@@ -12,7 +12,7 @@ public class XmlParser
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new File( "D:\\Kennismanagement Herkansing\\WeatherWarner\\WeatherWarner2.0\\XmlParsing.xml" ));
+        Document document = builder.parse(new File( System.getProperty("user.dir") + "\\XmlParsing.xml" ));
 
         Element root = document.getDocumentElement();
         System.out.println(root.getNodeName());
@@ -28,6 +28,7 @@ public class XmlParser
             {
                 Element element = (Element) node;
                 System.out.println(element.getAttribute("from"));
+                System.out.println(element.getAttribute(("to")));
             }
         }
     }
