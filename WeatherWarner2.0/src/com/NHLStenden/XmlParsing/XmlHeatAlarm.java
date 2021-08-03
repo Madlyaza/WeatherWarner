@@ -14,25 +14,21 @@ import java.io.IOException;
 
 import static java.lang.Integer.parseInt;
 
-public class XmlOneDayForecast
+public class XmlHeatAlarm
 {
     public String parseXML() throws ParserConfigurationException, IOException, SAXException
     {
         String maxTemperature = "";
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new File( System.getProperty("user.dir") + "\\XmlParsing.xml" ));
-
-        Element root = document.getDocumentElement();
-        //System.out.println(root.getNodeName());
+        Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
 
         NodeList nList = document.getElementsByTagName("temperature");
-        //System.out.print("============================");
 
-        for (int temp = 0; temp < nList.getLength(); temp++)
+        for (int temp = 1; temp < nList.getLength(); temp++)
         {
             Node node = nList.item(temp);
-            if(node.getNodeType() == Node.ELEMENT_NODE)
+            if (node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
                 maxTemperature = element.getAttribute("max");
@@ -44,18 +40,18 @@ public class XmlOneDayForecast
     public boolean checkTemperature(String maxTemperature)
     {
         double temperature = 0.0;
-        boolean heatDammage = false;
+        boolean heatDamage = false;
         try
         {
-            temperature = Double.parseDouble("26");
+            temperature = Double.parseDouble(maxTemperature);
         } catch (NumberFormatException ex)
         {
             System.out.println(ex);
         }
         if (temperature > 25)
         {
-            heatDammage = true;
+            heatDamage = true;
         }
-        return heatDammage;
+        return heatDamage;
     }
 }
