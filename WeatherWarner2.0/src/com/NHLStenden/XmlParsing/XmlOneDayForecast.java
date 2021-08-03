@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.Integer.max;
 import static java.lang.Integer.parseInt;
 
 public class XmlOneDayForecast
@@ -47,7 +48,7 @@ public class XmlOneDayForecast
         boolean heatDammage = false;
         try
         {
-            temperature = Double.parseDouble("26");
+            temperature = Double.parseDouble(maxTemperature);
         } catch (NumberFormatException ex)
         {
             System.out.println(ex);
