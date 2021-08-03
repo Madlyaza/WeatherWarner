@@ -14,7 +14,7 @@ public class XmlThreeHoursForecast
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new File( System.getProperty("user.dir") + "\\XmlParsing.xml" ));
+        Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
 
         Element root = document.getDocumentElement();
         //System.out.println(root.getNodeName());
@@ -25,10 +25,10 @@ public class XmlThreeHoursForecast
         for (int temp = 0; temp < nList.getLength(); temp++)
         {
             Node node = nList.item(temp);
-            if(node.getNodeType() == Node.ELEMENT_NODE)
+            if (node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
-                if(element.getAttribute("type").equals("rain"))
+                if (element.getAttribute("type").equals("rain"))
                 {
                     if ((Double.parseDouble(element.getAttribute("value")) / 3) > 10)
                     {
