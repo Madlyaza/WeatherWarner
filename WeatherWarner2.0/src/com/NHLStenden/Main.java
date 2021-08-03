@@ -4,6 +4,8 @@ import com.NHLStenden.Data.User;
 import com.NHLStenden.XmlParsing.XmlThreeHoursForecast;
 import org.xml.sax.SAXException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
@@ -11,13 +13,18 @@ public class Main {
 
     public static void main(String[] args)
     {
-        User user = new User("Admin", "Emmen");
+        User user = new User("Henk", "columbia,us");
+        Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
         api.getForecastThreeHours(user.getLocation());
         XmlThreeHoursForecast xml = new XmlThreeHoursForecast();
         try
         {
-            xml.parseXML();
+            if(xml.parseXML() == true)
+            {
+
+            }
+
         } catch (ParserConfigurationException e)
         {
             e.printStackTrace();
