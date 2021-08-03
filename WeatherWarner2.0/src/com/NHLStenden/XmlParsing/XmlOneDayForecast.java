@@ -41,23 +41,21 @@ public class XmlOneDayForecast
         return maxTemperature;
     }
 
-    public void checkTemperature(String maxTemperature)
+    public boolean checkTemperature(String maxTemperature)
     {
         double temperature = 0.0;
+        boolean heatDammage = false;
         try
         {
-            temperature = Double.parseDouble(maxTemperature);
+            temperature = Double.parseDouble("26");
         } catch (NumberFormatException ex)
         {
             System.out.println(ex);
         }
         if (temperature > 25)
         {
-            System.out.println("Playing sound");
+            heatDammage = true;
         }
-        else
-        {
-            System.out.println(maxTemperature);
-        }
+        return heatDammage;
     }
 }

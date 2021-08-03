@@ -21,5 +21,11 @@ public class Main
         {
             sound.playSound();
         }
+        api.getForecastOneDay(user.getLocation());
+        XmlOneDayForecast xml = new XmlOneDayForecast();
+        if (xml.checkTemperature(xml.parseXML()))
+        {
+            sound.playSound();
+        }
     }
 }

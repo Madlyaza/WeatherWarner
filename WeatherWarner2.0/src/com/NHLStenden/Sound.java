@@ -19,7 +19,7 @@ public class Sound
     {
         try
         {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("D:\\Kennismanagement Herkansing\\WeatherWarner\\WeatherWarner2.0\\src\\com\\NHLStenden\\Audio\\Warning.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.dir") + "\\com\\NHLStenden\\Audio\\Warning.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
