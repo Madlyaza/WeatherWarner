@@ -2,13 +2,14 @@ package com.NHLStenden;
 
 public class User
 {
+    private String name;
+
     public User(String name, String location)
     {
         this.name = name;
         this.location = location;
     }
 
-    private String name;
 
     public String getName()
     {

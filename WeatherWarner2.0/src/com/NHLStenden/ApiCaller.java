@@ -11,7 +11,7 @@ public class ApiCaller
     public String getWeather(String location)
     {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://community-open-weather-map.p.rapidapi.com/find?q="+ location +"&cnt=1&mode=XML&lon=0&type=link%2C%20accurate&lat=0&units=metric"))
+                .uri(URI.create("https://community-open-weather-map.p.rapidapi.com/find?q="+ location +"&cnt=1&mode=json&lon=0&type=link%2C%20accurate&lat=0&units=metric"))
                 .header("x-rapidapi-key", "e0f745ce19mshde257cf3b9d08bcp15b392jsnae76ad93ec4d")
                 .header("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
@@ -20,10 +20,12 @@ public class ApiCaller
         try
         {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e)
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
-        } catch (InterruptedException e)
+        }
+        catch (InterruptedException e)
         {
             e.printStackTrace();
         }
@@ -35,4 +37,9 @@ public class ApiCaller
 //    {
 //
 //    }
+
+    public String getForecastOneDay()
+    {
+
+    }
 }
