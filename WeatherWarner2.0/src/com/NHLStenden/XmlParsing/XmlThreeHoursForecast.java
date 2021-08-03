@@ -10,7 +10,7 @@ import static java.lang.Integer.parseInt;
 
 public class XmlThreeHoursForecast
 {
-    public void parseXML() throws ParserConfigurationException, IOException, SAXException
+    public boolean parseXML() throws ParserConfigurationException, IOException, SAXException
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -25,7 +25,6 @@ public class XmlThreeHoursForecast
         for (int temp = 0; temp < nList.getLength(); temp++)
         {
             Node node = nList.item(temp);
-            System.out.println("");
             if(node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
@@ -34,17 +33,20 @@ public class XmlThreeHoursForecast
                     if ((Double.parseDouble(element.getAttribute("value")) / 3) > 10)
                     {
                         System.out.println("there will be " + (Double.parseDouble(element.getAttribute("value")) / 3) + " mm/h of rain");
+                        return true;
                     }
                 }
-                else if (element.getAttribute("type") == "snow")
+                else if (element.getAttribute("type").equals("snow"))
                 {
                     if ((Double.parseDouble(element.getAttribute("value")) / 3) > 50)
                     {
                         System.out.println("there will be " + (Double.parseDouble(element.getAttribute("value")) / 3) + " mm/h of snow");
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
 }
