@@ -57,11 +57,11 @@ public class ApiCaller
             File myObj = new File("XmlParsing.xml");
             if(myObj.createNewFile())
             {
-                System.out.println("File created: " + myObj.getName());
+                //System.out.println("File created: " + myObj.getName());
             }
             else
             {
-                System.out.println("file already exists.");
+                //System.out.println("file already exists.");
             }
         } catch (IOException e) {
             System.out.println("An error occured.");
@@ -72,9 +72,9 @@ public class ApiCaller
             FileWriter myWriter = new FileWriter("XmlParsing.xml");
             myWriter.write(response.body());
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            //System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            //System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
