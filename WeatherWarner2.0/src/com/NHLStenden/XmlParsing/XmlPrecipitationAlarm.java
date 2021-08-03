@@ -16,11 +16,7 @@ public class XmlPrecipitationAlarm
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
 
-        Element root = document.getDocumentElement();
-        //System.out.println(root.getNodeName());
-
         NodeList nList = document.getElementsByTagName("precipitation");
-        //System.out.print("============================");
 
         for (int temp = 1; temp < nList.getLength(); temp++)
         {

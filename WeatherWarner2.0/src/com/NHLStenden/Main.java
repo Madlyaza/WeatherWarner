@@ -32,7 +32,7 @@ public class Main
 
         api.getForecastOneDay(user.getLocation());
         XmlFrostAlarm xmlFrostAlarm = new XmlFrostAlarm();
-        if(xmlFrostAlarm.checkTemperature(xmlFrostAlarm.parseXML()))
+        if (xmlFrostAlarm.checkTemperature(xmlFrostAlarm.parseXML()))
         {
             sound.playSound();
         }

@@ -19,7 +19,7 @@ public class XmlFrostAlarm
         String minTemperature = "";
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new File( System.getProperty("user.dir") + "\\XmlParsing.xml" ));
+        Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
 
         Element root = document.getDocumentElement();
 
@@ -28,10 +28,9 @@ public class XmlFrostAlarm
         for (int temp = 1; temp < nList.getLength(); temp++)
         {
             Node node = nList.item(temp);
-            if(node.getNodeType() == Node.ELEMENT_NODE)
+            if (node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
-                System.out.println(element.getAttribute("min"));
                 minTemperature = element.getAttribute("min");
             }
         }
@@ -49,7 +48,7 @@ public class XmlFrostAlarm
         {
             System.out.println(ex);
         }
-        if (temperature < 0.0)
+        if (temperature < 5.0)
         {
             soilFrost = true;
         }

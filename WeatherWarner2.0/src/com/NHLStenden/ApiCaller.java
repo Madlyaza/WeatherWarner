@@ -17,12 +17,10 @@ public class ApiCaller
         try
         {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
-        }
-        catch (InterruptedException e)
+        } catch (InterruptedException e)
         {
             e.printStackTrace();
         }
@@ -48,14 +46,7 @@ public class ApiCaller
         try
         {
             File myObj = new File("XmlParsing.xml");
-            if (myObj.createNewFile())
-            {
-                //System.out.println("File created: " + myObj.getName());
-            }
-            else
-            {
-                //System.out.println("file already exists.");
-            }
+            myObj.createNewFile();
         } catch (IOException e)
         {
             System.out.println("An error occured.");
@@ -67,22 +58,15 @@ public class ApiCaller
             FileWriter myWriter = new FileWriter("XmlParsing.xml");
             myWriter.write(response.body());
             myWriter.close();
-            //System.out.println("Successfully wrote to the file.");
         } catch (IOException e)
         {
-            //System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
 
     public void getForecastOneDay(String location)
     {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=" + location + "%2Cnl&cnt=2&units=metric&mode=xml&lang=en"))
-                .header("x-rapidapi-key", "5d1ef61c7bmsh6cab727049436a9p129bacjsn253a9721df76")
-                .header("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
-                .method("GET", HttpRequest.BodyPublishers.noBody())
-                .build();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=" + location + "%2Cnl&cnt=2&units=metric&mode=xml&lang=en")).header("x-rapidapi-key", "5d1ef61c7bmsh6cab727049436a9p129bacjsn253a9721df76").header("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com").method("GET", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = null;
         try
         {
@@ -94,7 +78,6 @@ public class ApiCaller
         {
             e.printStackTrace();
         }
-        //System.out.println(response.body());
         try
         {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
@@ -106,28 +89,23 @@ public class ApiCaller
             e.printStackTrace();
         }
 
-        try {
+        try
+        {
             File myObj = new File("XmlParsing.xml");
-            if(myObj.createNewFile())
-            {
-                //System.out.println("File created: " + myObj.getName());
-            }
-            else
-            {
-                //System.out.println("file already exists.");
-            }
-        } catch (IOException e) {
+            myObj.createNewFile();
+        } catch (IOException e)
+        {
             System.out.println("An error occured.");
             e.printStackTrace();
         }
 
-        try {
+        try
+        {
             FileWriter myWriter = new FileWriter("XmlParsing.xml");
             myWriter.write(response.body());
             myWriter.close();
-            //System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            //System.out.println("An error occurred.");
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
