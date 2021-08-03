@@ -51,6 +51,7 @@ public class XmlHeatAlarm
         if (temperature > 25)
         {
             heatDamage = true;
+            System.out.println("Heat detected for tomorrow.");
         }
         return heatDamage;
     }
