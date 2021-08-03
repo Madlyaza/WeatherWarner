@@ -12,50 +12,47 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
-import static java.lang.Integer.parseInt;
-
-public class XmlOneDayForecast
+public class XmlFrostAlarm
 {
     public String parseXML() throws ParserConfigurationException, IOException, SAXException
     {
-        String maxTemperature = "";
+        String minTemperature = "";
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File( System.getProperty("user.dir") + "\\XmlParsing.xml" ));
 
         Element root = document.getDocumentElement();
-        //System.out.println(root.getNodeName());
 
         NodeList nList = document.getElementsByTagName("temperature");
-        //System.out.print("============================");
 
-        for (int temp = 0; temp < nList.getLength(); temp++)
+        for (int temp = 1; temp < nList.getLength(); temp++)
         {
             Node node = nList.item(temp);
             if(node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
-                maxTemperature = element.getAttribute("max");
+                System.out.println(element.getAttribute("min"));
+                minTemperature = element.getAttribute("min");
             }
         }
-        return maxTemperature;
+        return minTemperature;
     }
 
-    public boolean checkTemperature(String maxTemperature)
+    public boolean checkTemperature(String minTemperature)
     {
         double temperature = 0.0;
-        boolean heatDammage = false;
+        boolean soilFrost = false;
         try
         {
-            temperature = Double.parseDouble("26");
+            temperature = Double.parseDouble(minTemperature);
         } catch (NumberFormatException ex)
         {
             System.out.println(ex);
         }
-        if (temperature > 25)
+        if (temperature < 0.0)
         {
-            heatDammage = true;
+            soilFrost = true;
         }
-        return heatDammage;
+        return soilFrost;
     }
 }

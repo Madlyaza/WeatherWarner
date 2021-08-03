@@ -8,7 +8,7 @@ import java.io.*;
 
 import static java.lang.Integer.parseInt;
 
-public class XmlThreeHoursForecast
+public class XmlPrecipitationAlarm
 {
     public boolean parseXML() throws ParserConfigurationException, IOException, SAXException
     {
@@ -22,7 +22,7 @@ public class XmlThreeHoursForecast
         NodeList nList = document.getElementsByTagName("precipitation");
         //System.out.print("============================");
 
-        for (int temp = 0; temp < nList.getLength(); temp++)
+        for (int temp = 1; temp < nList.getLength(); temp++)
         {
             Node node = nList.item(temp);
             if (node.getNodeType() == Node.ELEMENT_NODE)
