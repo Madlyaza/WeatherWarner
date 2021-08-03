@@ -4,37 +4,21 @@ import com.NHLStenden.Data.User;
 import com.NHLStenden.XmlParsing.XmlThreeHoursForecast;
 import org.xml.sax.SAXException;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
-public class Main {
-
-    public static void main(String[] args)
+public class Main
+{
+    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException
     {
         User user = new User("Henk", "columbia,us");
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
         api.getForecastThreeHours(user.getLocation());
-        XmlThreeHoursForecast xml = new XmlThreeHoursForecast();
-        try
+        XmlThreeHoursForecast xmlThreeHoursForecast = new XmlThreeHoursForecast();
+        if (xmlThreeHoursForecast.parseXML())
         {
-            if(xml.parseXML() == true)
-            {
-
-            }
-
-        } catch (ParserConfigurationException e)
-        {
-            e.printStackTrace();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        } catch (SAXException e)
-        {
-            e.printStackTrace();
+            sound.playSound();
         }
-
     }
 }
