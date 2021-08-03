@@ -1,6 +1,7 @@
 package com.NHLStenden;
 
 import com.NHLStenden.Data.User;
+import com.NHLStenden.XmlParsing.XmlOneDayForecast;
 import com.NHLStenden.XmlParsing.XmlThreeHoursForecast;
 import org.xml.sax.SAXException;
 
@@ -16,14 +17,12 @@ public class Main {
         User user = new User("Henk", "columbia,us");
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
-        api.getForecastThreeHours(user.getLocation());
-        XmlThreeHoursForecast xml = new XmlThreeHoursForecast();
+        //api.getForecastThreeHours(user.getLocation());
+        api.getForecastOneDay(user.getLocation());
+        XmlOneDayForecast xml = new XmlOneDayForecast();
         try
         {
-            if(xml.parseXML() == true)
-            {
-
-            }
+            xml.checkTemperature(xml.parseXML());
 
         } catch (ParserConfigurationException e)
         {
