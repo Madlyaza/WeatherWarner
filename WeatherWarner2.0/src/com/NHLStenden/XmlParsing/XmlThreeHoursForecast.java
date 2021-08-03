@@ -1,4 +1,4 @@
-package com.NHLStenden;
+package com.NHLStenden.XmlParsing;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -6,7 +6,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.*;
 import java.io.*;
 
-public class XmlParser
+public class XmlThreeHoursForecast
 {
     public void parseXML() throws ParserConfigurationException, IOException, SAXException
     {
@@ -17,7 +17,7 @@ public class XmlParser
         Element root = document.getDocumentElement();
         System.out.println(root.getNodeName());
 
-        NodeList nList = document.getElementsByTagName("time");
+        NodeList nList = document.getElementsByTagName("precipitation");
         System.out.print("============================");
 
         for (int temp = 0; temp < nList.getLength(); temp++)
@@ -27,8 +27,7 @@ public class XmlParser
             if(node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
-                System.out.println(element.getAttribute("from"));
-                System.out.println(element.getAttribute(("to")));
+                System.out.println(element.getAttribute("probability"));
             }
         }
     }

@@ -1,9 +1,9 @@
 package com.NHLStenden;
 
 import com.NHLStenden.Data.User;
+import com.NHLStenden.XmlParsing.XmlThreeHoursForecast;
 import org.xml.sax.SAXException;
 
-import javax.sql.rowset.spi.XmlReader;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public class Main {
         User user = new User("Admin", "Emmen");
         ApiCaller api = new ApiCaller();
         api.getForecastThreeHours(user.getLocation());
-        XmlParser xml = new XmlParser();
+        XmlThreeHoursForecast xml = new XmlThreeHoursForecast();
         try
         {
             xml.parseXML();
