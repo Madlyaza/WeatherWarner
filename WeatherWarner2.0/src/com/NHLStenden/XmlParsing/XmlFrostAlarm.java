@@ -5,7 +5,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,8 +19,6 @@ public class XmlFrostAlarm
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
-
-        Element root = document.getDocumentElement();
 
         NodeList nList = document.getElementsByTagName("temperature");
 
@@ -51,6 +48,7 @@ public class XmlFrostAlarm
         if (temperature < 5.0)
         {
             soilFrost = true;
+            System.out.println("Frost detected for tomorrow.");
         }
         return soilFrost;
     }
