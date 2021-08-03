@@ -1,11 +1,24 @@
 package com.NHLStenden;
 
-public class Main {
+import com.NHLStenden.Data.User;
+import com.NHLStenden.XmlParsing.XmlThreeHoursForecast;
+import org.xml.sax.SAXException;
 
-    public static void main(String[] args)
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+
+public class Main
+{
+    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException
     {
-        User user = new User("Henk", "Emmen");
+        User user = new User("Henk", "columbia,us");
+        Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
-        System.out.println(api.getWeather(user.getLocation()));
+        api.getForecastThreeHours(user.getLocation());
+        XmlThreeHoursForecast xmlThreeHoursForecast = new XmlThreeHoursForecast();
+        if (xmlThreeHoursForecast.parseXML())
+        {
+            sound.playSound();
+        }
     }
 }
