@@ -1,4 +1,4 @@
-package com.NHLStenden;
+package com.NHLStenden.Data;
 
 public class User
 {
