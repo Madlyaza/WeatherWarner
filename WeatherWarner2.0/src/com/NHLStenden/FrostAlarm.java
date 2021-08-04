@@ -13,7 +13,8 @@ public class FrostAlarm
     {
         Thread frostAlarm = new Thread(() ->
         {
-            while (true)
+            boolean errorVal = true;
+            while (errorVal)
             {
                 try
                 {
@@ -34,6 +35,7 @@ public class FrostAlarm
                 {
                     System.out.println("The Frost timer has stopped working.");
                     ie.printStackTrace();
+                    errorVal = false;
                 }
             }
         });

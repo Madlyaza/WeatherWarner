@@ -14,7 +14,8 @@ public class HeatAlarm
     {
         Thread heatAlarm = new Thread(() ->
         {
-            while (true)
+            boolean errorVal = true;
+            while (errorVal)
             {
                 try
                 {
@@ -35,6 +36,7 @@ public class HeatAlarm
                 {
                     System.out.println("The Heat timer has stopped working.");
                     ie.printStackTrace();
+                    errorVal = false;
                 }
             }
         });

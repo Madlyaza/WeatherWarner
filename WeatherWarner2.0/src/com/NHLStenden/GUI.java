@@ -7,7 +7,7 @@ public class GUI
 {
     private final JPanel panelAlarms;
     private final JPanel panelMinMaxTemp;
-    private final JPanel panelWindDirection;
+    private final JPanel panelWind;
     private final JFrame frame;
     private final JTabbedPane tabbedPane;
     private final Dimension screensize;
@@ -17,6 +17,8 @@ public class GUI
     private final JLabel precipitationWarning;
     private final JLabel maxTemperature;
     private final JLabel minTemperature;
+    private final JLabel windDirection;
+    private final JLabel windSpeed;
 
     public GUI()
     {
@@ -25,18 +27,21 @@ public class GUI
         precipitationWarning = new JLabel("Precipitation");
         maxTemperature = new JLabel("Max");
         minTemperature = new JLabel("Min");
+        windDirection = new JLabel("Direction");
+        windSpeed = new JLabel("Speed");
+
         tabbedPane = new JTabbedPane();
         frame = new JFrame();
         panelAlarms = new JPanel();
         panelMinMaxTemp = new JPanel();
-        panelWindDirection = new JPanel();
+        panelWind = new JPanel();
         screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
         panelAlarms.add(heatWarning);
         panelAlarms.add(frostWarning);
         panelAlarms.add(precipitationWarning);
 
-        panelAlarms.setLayout(new GridLayout(20, 0));
+        panelAlarms.setLayout(new GridLayout(10, 0));
         tabbedPane.addTab("Alarms", panelAlarms);
 
 
@@ -46,10 +51,11 @@ public class GUI
         panelMinMaxTemp.setLayout(new GridLayout(4, 0));
         tabbedPane.addTab("Temperatures", panelMinMaxTemp);
 
+        panelWind.add(windDirection);
+        panelWind.add(windSpeed);
 
-
-        panelWindDirection.setLayout(new GridLayout(5, 0));
-        tabbedPane.addTab("Wind", panelWindDirection);
+        panelWind.setLayout(new GridLayout(4, 0));
+        tabbedPane.addTab("Wind", panelWind);
 
         GroupLayout layout = new GroupLayout(frame.getContentPane());
         frame.getContentPane().setLayout(layout);
@@ -86,5 +92,15 @@ public class GUI
     public void setMinTemperature(String text)
     {
         minTemperature.setText(text);
+    }
+
+    public void setWindDirection(String text)
+    {
+        windDirection.setText(text);
+    }
+
+    public void setWindSpeed(String text)
+    {
+        windSpeed.setText(text);
     }
 }

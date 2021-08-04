@@ -17,23 +17,27 @@ public class Main
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
 
-//        api.getNextTenDays(user.getLocation());
-//        XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
-//        xmlMinimumTemperatureTenDays.parseXML(gui);
-//
-//        XmlMaximumTemperatureTenDays xmlMaximumTemperatureTenDays = new XmlMaximumTemperatureTenDays();
-//        xmlMaximumTemperatureTenDays.parseXML(gui);
+        api.getNextTenDays(user.getLocation());
+        XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
+        xmlMinimumTemperatureTenDays.parseXML(gui);
 
-//        api.getForecastThreeHours(user.getLocation());
-//        PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
-//        precipitationAlarm.start(api, user, sound, gui);
-//
-//        api.getForecastOneDay(user.getLocation());
-//        HeatAlarm heatAlarm = new HeatAlarm();
-//        FrostAlarm frostAlarm = new FrostAlarm();
-//        frostAlarm.start(api, user, sound, gui);
-//        heatAlarm.start(api, user, sound, gui);
+        XmlMaximumTemperatureTenDays xmlMaximumTemperatureTenDays = new XmlMaximumTemperatureTenDays();
+        xmlMaximumTemperatureTenDays.parseXML(gui);
 
-        //api.getNextTenDays(user.getLocation());
+        XmlWindDirectionTenDays xmlWindDirectionTenDays = new XmlWindDirectionTenDays();
+        xmlWindDirectionTenDays.parseXML(gui);
+
+        XmlWindspeedTenDays xmlWindspeedTenDays = new XmlWindspeedTenDays();
+        xmlWindspeedTenDays.parseXML(gui);
+
+        api.getForecastThreeHours(user.getLocation());
+        PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
+        precipitationAlarm.start(api, user, sound, gui);
+
+        api.getForecastOneDay(user.getLocation());
+        HeatAlarm heatAlarm = new HeatAlarm();
+        FrostAlarm frostAlarm = new FrostAlarm();
+        frostAlarm.start(api, user, sound, gui);
+        heatAlarm.start(api, user, sound, gui);
     }
 }

@@ -13,11 +13,11 @@ public class PrecipitationAlarm
     {
         Thread precipitationAlarm = new Thread(() ->
         {
-            while (true)
+            boolean errorVal = true;
+            while (errorVal)
             {
                 try
                 {
-                    System.out.println("Precipitation alarm started.");
                     api.getForecastThreeHours(user.getLocation());
                     XmlPrecipitationAlarm xmlPrecipitationAlarm = new XmlPrecipitationAlarm();
                     if (xmlPrecipitationAlarm.parseXML())
@@ -35,6 +35,7 @@ public class PrecipitationAlarm
                 {
                     System.out.println("The precipitation timer has stopped. Please restart the application to make sure the timer is working again.");
                     ie.printStackTrace();
+                    errorVal = false;
                 }
             }
         });
