@@ -20,11 +20,11 @@ public class GUI
 
     public GUI()
     {
-        heatWarning = new JLabel("");
-        frostWarning = new JLabel("");
-        precipitationWarning = new JLabel("");
-        maxTemperature = new JLabel("");
-        minTemperature = new JLabel("");
+        heatWarning = new JLabel("Heat");
+        frostWarning = new JLabel("Frost");
+        precipitationWarning = new JLabel("Precipitation");
+        maxTemperature = new JLabel("Max");
+        minTemperature = new JLabel("Min");
         tabbedPane = new JTabbedPane();
         frame = new JFrame();
         panelAlarms = new JPanel();
@@ -32,19 +32,18 @@ public class GUI
         panelWindDirection = new JPanel();
         screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
-
-
         panelAlarms.add(heatWarning);
         panelAlarms.add(frostWarning);
         panelAlarms.add(precipitationWarning);
 
-        panelAlarms.setLayout(new GridLayout(3, 0));
+        panelAlarms.setLayout(new GridLayout(20, 0));
         tabbedPane.addTab("Alarms", panelAlarms);
 
 
         panelMinMaxTemp.add(minTemperature);
+        panelMinMaxTemp.add(maxTemperature);
 
-        panelMinMaxTemp.setLayout(new GridLayout(5, 0));
+        panelMinMaxTemp.setLayout(new GridLayout(4, 0));
         tabbedPane.addTab("Temperatures", panelMinMaxTemp);
 
 
@@ -79,9 +78,9 @@ public class GUI
         precipitationWarning.setText(text);
     }
 
-    public void setMaxTemperature()
+    public void setMaxTemperature(String text)
     {
-
+        maxTemperature.setText(text);
     }
 
     public void setMinTemperature(String text)

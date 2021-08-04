@@ -1,5 +1,6 @@
 package com.NHLStenden.XmlParsing;
 
+import com.NHLStenden.GUI;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -11,11 +12,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class XmlMaximumTemperatureTenDays
 {
-    public void parseXML() throws ParserConfigurationException, IOException, SAXException
+    public void parseXML(GUI gui) throws ParserConfigurationException, IOException, SAXException
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -31,13 +33,18 @@ public class XmlMaximumTemperatureTenDays
                 if (node.getNodeType() == Node.ELEMENT_NODE)
                 {
                     Element element = (Element) node;
-                    maximumTemperatures.add(element.getAttribute("max") + "\u00B0C is the maximum temperature for day " + i);
+                    maximumTemperatures.add(element.getAttribute("max"));
                 }
             }
-            for (String max:maximumTemperatures)
+            String tempString = "";
+            int count = 1;
+            for (String min : maximumTemperatures)
             {
-                System.out.println(max);
+                tempString = tempString + min + " \u00B0C on " + LocalDate.now().plusDays(count) +"<br/>";
+                count++;
             }
+            tempString = "<html><h2>The Maximum Temperature per date:</h2>" + tempString + "</html>";
+            gui.setMaxTemperature(tempString);
         }
         catch (Exception ex)
         {
