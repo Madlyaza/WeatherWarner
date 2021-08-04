@@ -32,8 +32,14 @@ public class User
     public void setLocation(String location)
     {
         if (isAdmin)
-            
-        this.location = location;
+        {
+            this.location = location;
+            System.out.println("Location has been updated to: " + location);
+        }
+        else
+        {
+            System.out.println("Unable to comply, you are not authorised to change the location.");
+        }
     }
 
 }
