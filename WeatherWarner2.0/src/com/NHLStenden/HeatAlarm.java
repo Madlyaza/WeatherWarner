@@ -1,44 +1,45 @@
 package com.NHLStenden;
 
 import com.NHLStenden.Data.User;
-import com.NHLStenden.XmlParsing.XmlPrecipitationAlarm;
+import com.NHLStenden.XmlParsing.XmlFrostAlarm;
+import com.NHLStenden.XmlParsing.XmlHeatAlarm;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
-public class PrecipitationAlarm
+public class HeatAlarm
 {
     public void start(ApiCaller api, User user, Sound sound, GUI gui)
     {
-        Thread precipitationAlarm = new Thread(() ->
+        Thread heatAlarm = new Thread(() ->
         {
             boolean errorVal = true;
             while (errorVal)
             {
                 try
                 {
-                    api.getForecastThreeHours(user.getLocation());
-                    XmlPrecipitationAlarm xmlPrecipitationAlarm = new XmlPrecipitationAlarm();
-                    if (xmlPrecipitationAlarm.parseXML())
+                    api.getForecastOneDay(user.getLocation());
+                    XmlHeatAlarm xmlHeatAlarm = new XmlHeatAlarm();
+                    if (xmlHeatAlarm.checkTemperature(xmlHeatAlarm.parseXML()))
                     {
                         sound.playSound();
-                        gui.setFrostWarningText("Rain damage is expected for tomorrow!");
+                        gui.setHeatWarningText("Heat damage is expected for tomorrow!");
                     }
                     else
                     {
-                        gui.setPrecipitationWarningText("No rain damage is expected for tomorrow.");
+                        gui.setHeatWarningText("No heat damage is expected for tomorrow.");
                     }
 
-                    Thread.sleep(1000 * 60 * 60 * 3);
+                    Thread.sleep(1000 * 60 * 60 * 24);
                 } catch (InterruptedException | ParserConfigurationException | IOException | SAXException ie)
                 {
-                    System.out.println("The precipitation timer has stopped. Please restart the application to make sure the timer is working again.");
+                    System.out.println("The Heat timer has stopped working.");
                     ie.printStackTrace();
                     errorVal = false;
                 }
             }
         });
-        precipitationAlarm.start();
+        heatAlarm.start();
     }
 }

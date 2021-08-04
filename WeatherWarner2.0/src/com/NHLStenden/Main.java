@@ -11,25 +11,33 @@ public class Main
 {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException
     {
+        GUI gui = new GUI();
+
         User user = new User("Henk", "Emmen,nl", true);
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
 
-        /*
-        XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
-        xmlMinimumTemperatureTenDays.parseXML();
-
-        PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
-        precipitationAlarm.start(api, user, sound);
-
-        FrostAndHeatAlarm frostAndHeatAlarm = new FrostAndHeatAlarm();
-        frostAndHeatAlarm.start(api, user, sound);
-        */
-
         api.getNextTenDays(user.getLocation());
+        XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
+        xmlMinimumTemperatureTenDays.parseXML(gui);
 
+        XmlMaximumTemperatureTenDays xmlMaximumTemperatureTenDays = new XmlMaximumTemperatureTenDays();
+        xmlMaximumTemperatureTenDays.parseXML(gui);
 
-        XmlMaximumTemperatureTenDays max = new XmlMaximumTemperatureTenDays();
-        max.parseXML();
+        XmlWindDirectionTenDays xmlWindDirectionTenDays = new XmlWindDirectionTenDays();
+        xmlWindDirectionTenDays.parseXML(gui);
+
+        XmlWindspeedTenDays xmlWindspeedTenDays = new XmlWindspeedTenDays();
+        xmlWindspeedTenDays.parseXML(gui);
+
+        api.getForecastThreeHours(user.getLocation());
+        PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
+        precipitationAlarm.start(api, user, sound, gui);
+
+        api.getForecastOneDay(user.getLocation());
+        HeatAlarm heatAlarm = new HeatAlarm();
+        FrostAlarm frostAlarm = new FrostAlarm();
+        frostAlarm.start(api, user, sound, gui);
+        heatAlarm.start(api, user, sound, gui);
     }
 }
