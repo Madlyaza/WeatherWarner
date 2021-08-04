@@ -34,4 +34,12 @@ class UserTest
         Tester.setLocation("TestLocation2");
         assertEquals("TestLocation2", Tester.getLocation());
     }
+
+    @org.junit.jupiter.api.Test
+    void setLocation2()
+    {
+        User Tester = new User("Tester", "TestLocation", false);
+        Tester.setLocation("TestLocation2");
+        assertNotEquals("TestLocation2", Tester.getLocation());
+    }
 }
