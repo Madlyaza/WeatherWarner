@@ -15,6 +15,7 @@ public class Main
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
 
+        /*
         XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
         xmlMinimumTemperatureTenDays.parseXML();
 
@@ -23,6 +24,12 @@ public class Main
 
         FrostAndHeatAlarm frostAndHeatAlarm = new FrostAndHeatAlarm();
         frostAndHeatAlarm.start(api, user, sound);
+        */
+
         api.getNextTenDays(user.getLocation());
+
+
+        XmlMaximumTemperatureTenDays max = new XmlMaximumTemperatureTenDays();
+        max.parseXML();
     }
 }
