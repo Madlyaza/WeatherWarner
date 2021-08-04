@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.Integer.max;
 import static java.lang.Integer.parseInt;
 
 public class XmlHeatAlarm
