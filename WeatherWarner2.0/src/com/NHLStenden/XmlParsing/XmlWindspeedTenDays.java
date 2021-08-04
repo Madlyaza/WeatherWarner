@@ -11,17 +11,19 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class XmlFrostAlarm
+public class XmlWindspeedTenDays
 {
-    public String parseXML() throws ParserConfigurationException, IOException, SAXException
+    public ArrayList<String> parseXML() throws ParserConfigurationException, IOException, SAXException
     {
-        String minTemperature = "";
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
 
-        NodeList nList = document.getElementsByTagName("temperature");
+        NodeList nList = document.getElementsByTagName("windSpeed");
+
+        ArrayList<String> windspeeds = new ArrayList<>();
 
         for (int temp = 1; temp < nList.getLength(); temp++)
         {
@@ -29,28 +31,9 @@ public class XmlFrostAlarm
             if (node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
-                minTemperature = element.getAttribute("min");
+                windspeeds.add(element.getAttribute("mps"));
             }
         }
-        return minTemperature;
-    }
-
-    public boolean checkTemperature(String minTemperature)
-    {
-        double temperature = 0.0;
-        boolean soilFrost = false;
-        try
-        {
-            temperature = Double.parseDouble(minTemperature);
-        } catch (NumberFormatException ex)
-        {
-            System.out.println(ex);
-        }
-        if (temperature < 5.0)
-        {
-            soilFrost = true;
-            System.out.println("Frost detected for tomorrow.");
-        }
-        return soilFrost;
+        return windspeeds;
     }
 }

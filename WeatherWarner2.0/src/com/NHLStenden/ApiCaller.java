@@ -17,10 +17,7 @@ public class ApiCaller
         try
         {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        } catch (InterruptedException e)
+        } catch (IOException | InterruptedException e)
         {
             e.printStackTrace();
         }
@@ -35,10 +32,7 @@ public class ApiCaller
         try
         {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        } catch (InterruptedException e)
+        } catch (IOException | InterruptedException e)
         {
             e.printStackTrace();
         }
@@ -71,20 +65,54 @@ public class ApiCaller
         try
         {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        } catch (InterruptedException e)
+        } catch (IOException | InterruptedException e)
         {
             e.printStackTrace();
         }
         try
         {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        try
+        {
+            File myObj = new File("XmlParsing.xml");
+            myObj.createNewFile();
+        } catch (IOException e)
+        {
+            System.out.println("An error occured.");
+            e.printStackTrace();
+        }
+
+        try
+        {
+            FileWriter myWriter = new FileWriter("XmlParsing.xml");
+            myWriter.write(response.body());
+            myWriter.close();
         } catch (IOException e)
         {
             e.printStackTrace();
-        } catch (InterruptedException e)
+        }
+    }
+
+    public void getNextTenDays(String location)
+    {
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=" + location + "%2Cnl&cnt=11&units=metric&mode=xml&lang=en")).header("x-rapidapi-key", "5d1ef61c7bmsh6cab727049436a9p129bacjsn253a9721df76").header("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com").method("GET", HttpRequest.BodyPublishers.noBody()).build();
+        HttpResponse<String> response = null;
+        try
+        {
+            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        try
+        {
+            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e)
         {
             e.printStackTrace();
         }
