@@ -3,11 +3,14 @@ package com.NHLStenden.Data;
 public class User
 {
     private String name;
+    private String location;
+    private boolean isAdmin;
 
-    public User(String name, String location)
+    public User(String name, String location, boolean isAdmin)
     {
         this.name = name;
         this.location = location;
+        this.isAdmin = isAdmin;
     }
 
 
@@ -28,8 +31,15 @@ public class User
 
     public void setLocation(String location)
     {
-        this.location = location;
+        if (isAdmin)
+        {
+            this.location = location;
+            System.out.println("Location has been updated to: " + location);
+        }
+        else
+        {
+            System.out.println("Unable to comply, you are not authorised to change the location.");
+        }
     }
 
-    private String location;
 }
