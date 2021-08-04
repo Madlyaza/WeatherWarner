@@ -29,6 +29,16 @@ public class User
         return location;
     }
 
+    public boolean isAdmin()
+    {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin)
+    {
+        isAdmin = admin;
+    }
+
     public void setLocation(String location)
     {
         if (isAdmin)
