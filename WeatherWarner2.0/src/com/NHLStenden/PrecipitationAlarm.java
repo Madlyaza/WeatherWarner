@@ -17,6 +17,7 @@ public class PrecipitationAlarm
             {
                 try
                 {
+                    System.out.println("Precipitation alarm started.");
                     api.getForecastThreeHours(user.getLocation());
                     XmlPrecipitationAlarm xmlPrecipitationAlarm = new XmlPrecipitationAlarm();
                     if (xmlPrecipitationAlarm.parseXML())

@@ -17,18 +17,12 @@ public class Main
 
         XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
         xmlMinimumTemperatureTenDays.parseXML();
-/*
+
         PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
         precipitationAlarm.start(api, user, sound);
 
         FrostAndHeatAlarm frostAndHeatAlarm = new FrostAndHeatAlarm();
         frostAndHeatAlarm.start(api, user, sound);
         api.getNextTenDays(user.getLocation());
-  */
-        XmlWindspeedTenDays xmlWindspeedTenDays = new XmlWindspeedTenDays();
-        for (String mps:xmlWindspeedTenDays.parseXML())
-        {
-            System.out.println(mps);
-        }
     }
 }

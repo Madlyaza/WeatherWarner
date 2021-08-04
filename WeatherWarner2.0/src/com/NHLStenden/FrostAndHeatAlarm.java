@@ -18,6 +18,7 @@ public class FrostAndHeatAlarm
             {
                 try
                 {
+                    System.out.println("Frost and heat alarm started.");
                     api.getForecastOneDay(user.getLocation());
                     XmlHeatAlarm xmlHeatAlarm = new XmlHeatAlarm();
                     if (xmlHeatAlarm.checkTemperature(xmlHeatAlarm.parseXML()))
