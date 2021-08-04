@@ -30,11 +30,9 @@ public class Main
         XmlWindspeedTenDays xmlWindspeedTenDays = new XmlWindspeedTenDays();
         xmlWindspeedTenDays.parseXML(gui);
 
-        api.getForecastThreeHours(user.getLocation());
         PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
         precipitationAlarm.start(api, user, sound, gui);
 
-        api.getForecastOneDay(user.getLocation());
         HeatAlarm heatAlarm = new HeatAlarm();
         FrostAlarm frostAlarm = new FrostAlarm();
         frostAlarm.start(api, user, sound, gui);
