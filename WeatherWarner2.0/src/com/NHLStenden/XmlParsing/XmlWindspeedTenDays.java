@@ -11,18 +11,19 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class XmlWindspeedTenDays
 {
-    public String parseXML() throws ParserConfigurationException, IOException, SAXException
+    public ArrayList<String> parseXML() throws ParserConfigurationException, IOException, SAXException
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
 
-        NodeList nList = document.getElementsByTagName("temperature");
+        NodeList nList = document.getElementsByTagName("windSpeed");
 
-        String[] windSpeeds;
+        ArrayList<String> windspeeds = new ArrayList<>();
 
         for (int temp = 1; temp < nList.getLength(); temp++)
         {
@@ -30,14 +31,9 @@ public class XmlWindspeedTenDays
             if (node.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
-                minTemperature = element.getAttribute("min");
+                windspeeds.add(element.getAttribute("mps"));
             }
         }
-        return "test";
-    }
-
-    public boolean checkWindspeed()
-    {
-        return true;
+        return windspeeds;
     }
 }
