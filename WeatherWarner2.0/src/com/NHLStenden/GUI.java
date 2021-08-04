@@ -15,14 +15,16 @@ public class GUI
     private final JLabel heatWarning;
     private final JLabel frostWarning;
     private final JLabel precipitationWarning;
-    private final JLabel temperatures;
+    private final JLabel maxTemperature;
+    private final JLabel minTemperature;
 
     public GUI()
     {
         heatWarning = new JLabel("");
         frostWarning = new JLabel("");
         precipitationWarning = new JLabel("");
-        temperatures = new JLabel("");
+        maxTemperature = new JLabel("");
+        minTemperature = new JLabel("");
         tabbedPane = new JTabbedPane();
         frame = new JFrame();
         panelAlarms = new JPanel();
@@ -40,7 +42,7 @@ public class GUI
         tabbedPane.addTab("Alarms", panelAlarms);
 
 
-        panelMinMaxTemp.add(temperatures);
+        panelMinMaxTemp.add(minTemperature);
 
         panelMinMaxTemp.setLayout(new GridLayout(5, 0));
         tabbedPane.addTab("Temperatures", panelMinMaxTemp);
@@ -75,5 +77,15 @@ public class GUI
     public void setPrecipitationWarningText(String text)
     {
         precipitationWarning.setText(text);
+    }
+
+    public void setMaxTemperature()
+    {
+
+    }
+
+    public void setMinTemperature(String text)
+    {
+        minTemperature.setText(text);
     }
 }
