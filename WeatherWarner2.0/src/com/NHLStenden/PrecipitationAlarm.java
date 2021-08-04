@@ -9,11 +9,11 @@ import java.io.IOException;
 
 public class PrecipitationAlarm
 {
-    public void start(ApiCaller api, User user, Sound sound)
+    public void start(ApiCaller api, User user, Sound sound, GUI gui)
     {
         Thread precipitationAlarm = new Thread(() ->
         {
-            while(true)
+            while (true)
             {
                 try
                 {
@@ -23,10 +23,15 @@ public class PrecipitationAlarm
                     if (xmlPrecipitationAlarm.parseXML())
                     {
                         sound.playSound();
+                        gui.setFrostWarningText("Rain damage is expected for tomorrow!");
                     }
+                    else
+                    {
+                        gui.setPrecipitationWarningText("No rain damage is expected for tomorrow.");
+                    }
+
                     Thread.sleep(1000 * 60 * 60 * 3);
-                }
-                catch (InterruptedException | ParserConfigurationException | IOException | SAXException ie)
+                } catch (InterruptedException | ParserConfigurationException | IOException | SAXException ie)
                 {
                     System.out.println("The precipitation timer has stopped. Please restart the application to make sure the timer is working again.");
                     ie.printStackTrace();

@@ -11,18 +11,26 @@ public class Main
 {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException
     {
+        GUI gui = new GUI();
+
         User user = new User("Henk", "Emmen,nl");
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
 
+        api.getNextTenDays(user.getLocation());
         XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
         xmlMinimumTemperatureTenDays.parseXML();
 
+        api.getForecastThreeHours(user.getLocation());
         PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
-        precipitationAlarm.start(api, user, sound);
+        precipitationAlarm.start(api, user, sound, gui);
 
-        FrostAndHeatAlarm frostAndHeatAlarm = new FrostAndHeatAlarm();
-        frostAndHeatAlarm.start(api, user, sound);
-        api.getNextTenDays(user.getLocation());
+        api.getForecastOneDay(user.getLocation());
+        HeatAlarm heatAlarm = new HeatAlarm();
+        FrostAlarm frostAlarm = new FrostAlarm();
+        frostAlarm.start(api, user, sound, gui);
+        heatAlarm.start(api, user, sound, gui);
+
+        //api.getNextTenDays(user.getLocation());
     }
 }

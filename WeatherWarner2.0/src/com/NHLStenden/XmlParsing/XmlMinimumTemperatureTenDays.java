@@ -22,7 +22,8 @@ public class XmlMinimumTemperatureTenDays
         try
         {
             Document document = builder.parse(new File(System.getProperty("user.dir") + "\\XmlParsing.xml"));
-            NodeList nList = document.getElementsByTagName("temperature");        ArrayList<String> minimumTemperatures = new ArrayList<>();
+            NodeList nList = document.getElementsByTagName("temperature");
+            ArrayList<String> minimumTemperatures = new ArrayList<>();
 
             for (int i = 1; i < nList.getLength(); i++)
             {
@@ -33,12 +34,11 @@ public class XmlMinimumTemperatureTenDays
                     minimumTemperatures.add(element.getAttribute("min"));
                 }
             }
-            for (String min:minimumTemperatures)
+            for (String min : minimumTemperatures)
             {
                 System.out.println(min + " \u00B0C");
             }
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             System.out.println("Check XML file for more information");
             ex.printStackTrace();
