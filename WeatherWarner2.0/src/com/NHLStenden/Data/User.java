@@ -3,11 +3,14 @@ package com.NHLStenden.Data;
 public class User
 {
     private String name;
+    private String location;
+    private boolean isAdmin;
 
-    public User(String name, String location)
+    public User(String name, String location, boolean isAdmin)
     {
         this.name = name;
         this.location = location;
+        this.isAdmin = isAdmin;
     }
 
 
@@ -28,8 +31,9 @@ public class User
 
     public void setLocation(String location)
     {
+        if (isAdmin)
+            
         this.location = location;
     }
 
-    private String location;
 }
