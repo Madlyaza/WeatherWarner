@@ -11,7 +11,7 @@ public class Main
 {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException
     {
-        User user = new User("Henk", "Emmen,nl");
+        User user = new User("Henk", "Emmen,nl", true);
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
 
