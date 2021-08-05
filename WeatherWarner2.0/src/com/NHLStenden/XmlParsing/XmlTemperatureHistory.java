@@ -2,6 +2,7 @@ package com.NHLStenden.XmlParsing;
 
 import com.NHLStenden.GUI;
 import com.sun.tools.jconsole.JConsoleContext;
+import com.sun.tools.jconsole.JConsolePlugin;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,9 +15,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class XmlTemperatureHistory
 {
@@ -51,20 +54,45 @@ public class XmlTemperatureHistory
             }
         }
 
-        for(int i = 0; i < nodes.size(); i++)
+        String holdingDate = "";
+        ArrayList<ArrayList> monthlyNumbers = new ArrayList<>();
+        ArrayList<Double> tempList = new ArrayList<>();
+        for (NodeList nodeList : nodes)
         {
-            NodeList nodeList = nodes.get(i);
-            for(int j = 2; j < nodeList.getLength(); j++)
+            Node dateNode = nodeList.item(3);
+            Node tempNode = nodeList.item(5);
+            if (dateNode.getNodeType() == Node.ELEMENT_NODE && tempNode.getNodeType() == Node.ELEMENT_NODE)
             {
-                Node node = nodeList.item(j);
-                if(node.getNodeType() == Node.ELEMENT_NODE)
+                Element dateElement = (Element) dateNode;
+                Element tempElement = (Element) tempNode;
+                if (dateElement.getNodeName().equals("date"))
                 {
-                    Element element = (Element) node;
-                    if(element.getNodeName().equals("date"))
+                    String[] stringArray = dateElement.getTextContent().split("-");
+                    if (!stringArray[1].equals(holdingDate))
                     {
-                        System.out.println(element.getTextContent());
+                        monthlyNumbers.add(tempList);
+                        tempList = new ArrayList<>();
+                        holdingDate = stringArray[1];
+                    }
+                    if(!Objects.equals(tempElement.getTextContent(), ""))
+                    {
+                        tempList.add(Double.parseDouble(tempElement.getTextContent()));
                     }
                 }
+            }
+        }
+
+        for (ArrayList list:monthlyNumbers)
+        {
+            double sum = 0.0;
+            if (!list.isEmpty())
+            {
+                for(Object i : list)
+                {
+                    sum += ((Number) i ).doubleValue();
+                }
+                Double average = (sum / list.size()) / 10; // Divide by 10 since the XML has it in 0.1 Celsius
+                System.out.println(average);
             }
         }
     }

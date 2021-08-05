@@ -18,7 +18,7 @@ public class Main
         ApiCaller api = new ApiCaller();
 
         XmlTemperatureHistory xmlTemperatureHistory = new XmlTemperatureHistory();
-        xmlTemperatureHistory.parseXML(gui, 356);
+        xmlTemperatureHistory.parseXML(gui, 391);
 
 //        api.getNextTenDays(user.getLocation());
 //        XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
