@@ -1,8 +1,6 @@
 package com.NHLStenden.XmlParsing;
 
 import com.NHLStenden.GUI;
-import com.sun.tools.jconsole.JConsoleContext;
-import com.sun.tools.jconsole.JConsolePlugin;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,9 +13,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.sql.Array;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -55,7 +53,8 @@ public class XmlTemperatureHistory
         }
 
         String holdingDate = "";
-        ArrayList<ArrayList> monthlyNumbers = new ArrayList<>();
+        String fullDate = "";
+        ArrayList<ArrayList> averageTempWithDate = new ArrayList<>();
         ArrayList<Double> tempList = new ArrayList<>();
         for (NodeList nodeList : nodes)
         {
@@ -70,9 +69,24 @@ public class XmlTemperatureHistory
                     String[] stringArray = dateElement.getTextContent().split("-");
                     if (!stringArray[1].equals(holdingDate))
                     {
-                        monthlyNumbers.add(tempList);
+                        double sum = 0.0;
+                        if (!tempList.isEmpty())
+                        {
+                            for(Number i : tempList)
+                            {
+                                sum += i.doubleValue();
+                            }
+                            Double average = (sum / tempList.size()) / 10; // Divide by 10 since the XML has it in 0.1 Celsius
+                            ArrayList<Object> avgList = new ArrayList<>();
+                            avgList.add(average);
+                            avgList.add(fullDate);
+                            averageTempWithDate.add(avgList);
+                        }
+
                         tempList = new ArrayList<>();
                         holdingDate = stringArray[1];
+                        fullDate = dateElement.getTextContent();
+
                     }
                     if(!Objects.equals(tempElement.getTextContent(), ""))
                     {
@@ -82,17 +96,14 @@ public class XmlTemperatureHistory
             }
         }
 
-        for (ArrayList list:monthlyNumbers)
+        LocalDate minus20 =  LocalDate.now().minusYears(20);
+        for(ArrayList tempsAndDates : averageTempWithDate)
         {
-            double sum = 0.0;
-            if (!list.isEmpty())
+            String[] tempDate = tempsAndDates.get(1).toString().split("T");
+            LocalDate currentDate = LocalDate.parse(tempDate[0]);
+            if (minus20.isBefore(currentDate))
             {
-                for(Object i : list)
-                {
-                    sum += ((Number) i ).doubleValue();
-                }
-                Double average = (sum / list.size()) / 10; // Divide by 10 since the XML has it in 0.1 Celsius
-                System.out.println(average);
+                
             }
         }
     }
