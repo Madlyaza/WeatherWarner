@@ -12,8 +12,10 @@ public class Main
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException
     {
         User user = new User("Henk", "Emmen,nl", true, "moi123");
-        LoginPage loginPage = new LoginPage();
+        Connect conn = new Connect();
+        conn.connect();
         /*
+        LoginPage loginPage = new LoginPage();
         GUI gui = new GUI();
 
         User user = new User("Henk", "Emmen,nl", true);
