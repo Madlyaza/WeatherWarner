@@ -17,25 +17,28 @@ public class Main
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
 
-        api.getNextTenDays(user.getLocation());
-        XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
-        xmlMinimumTemperatureTenDays.parseXML(gui);
+        XmlTemperatureHistory xmlTemperatureHistory = new XmlTemperatureHistory();
+        xmlTemperatureHistory.parseXML(gui, 356);
 
-        XmlMaximumTemperatureTenDays xmlMaximumTemperatureTenDays = new XmlMaximumTemperatureTenDays();
-        xmlMaximumTemperatureTenDays.parseXML(gui);
-
-        XmlWindDirectionTenDays xmlWindDirectionTenDays = new XmlWindDirectionTenDays();
-        xmlWindDirectionTenDays.parseXML(gui);
-
-        XmlWindspeedTenDays xmlWindspeedTenDays = new XmlWindspeedTenDays();
-        xmlWindspeedTenDays.parseXML(gui);
-
-        PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
-        precipitationAlarm.start(api, user, sound, gui);
-
-        HeatAlarm heatAlarm = new HeatAlarm();
-        FrostAlarm frostAlarm = new FrostAlarm();
-        frostAlarm.start(api, user, sound, gui);
-        heatAlarm.start(api, user, sound, gui);
+//        api.getNextTenDays(user.getLocation());
+//        XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();
+//        xmlMinimumTemperatureTenDays.parseXML(gui);
+//
+//        XmlMaximumTemperatureTenDays xmlMaximumTemperatureTenDays = new XmlMaximumTemperatureTenDays();
+//        xmlMaximumTemperatureTenDays.parseXML(gui);
+//
+//        XmlWindDirectionTenDays xmlWindDirectionTenDays = new XmlWindDirectionTenDays();
+//        xmlWindDirectionTenDays.parseXML(gui);
+//
+//        XmlWindspeedTenDays xmlWindspeedTenDays = new XmlWindspeedTenDays();
+//        xmlWindspeedTenDays.parseXML(gui);
+//
+//        PrecipitationAlarm precipitationAlarm = new PrecipitationAlarm();
+//        precipitationAlarm.start(api, user, sound, gui);
+//
+//        HeatAlarm heatAlarm = new HeatAlarm();
+//        FrostAlarm frostAlarm = new FrostAlarm();
+//        frostAlarm.start(api, user, sound, gui);
+//        heatAlarm.start(api, user, sound, gui);
     }
 }
