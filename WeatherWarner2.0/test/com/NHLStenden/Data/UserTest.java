@@ -1,5 +1,7 @@
 package com.NHLStenden.Data;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest
@@ -41,5 +43,20 @@ class UserTest
         User Tester = new User("Tester", "TestLocation", false,"StrongPassword");
         Tester.setLocation("TestLocation2");
         assertNotEquals("TestLocation2", Tester.getLocation());
+    }
+
+    @Test
+    void getPassword()
+    {
+        User Tester = new User("Tester", "TestLocation", true,"StrongPassword");
+        assertEquals("StrongPassword", Tester.getPassword());
+    }
+
+    @Test
+    void setPassword()
+    {
+        User Tester = new User("Tester", "TestLocation", true,"StrongPassword");
+        Tester.setPassword("Test1234");
+        assertEquals("Test1234", Tester.getPassword());
     }
 }
