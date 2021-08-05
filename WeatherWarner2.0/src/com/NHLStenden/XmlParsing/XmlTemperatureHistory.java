@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -97,14 +98,19 @@ public class XmlTemperatureHistory
         }
 
         LocalDate minus20 =  LocalDate.now().minusYears(20);
+        String temperatureString = "";
+        DecimalFormat df = new DecimalFormat("#.#");
         for(ArrayList tempsAndDates : averageTempWithDate)
         {
             String[] tempDate = tempsAndDates.get(1).toString().split("T");
             LocalDate currentDate = LocalDate.parse(tempDate[0]);
+            String [] mAndY = tempsAndDates.get(1).toString().split("-");
             if (minus20.isBefore(currentDate))
             {
-                
+                temperatureString = temperatureString + df.format(tempsAndDates.get(0)) + "\u00B0C was the average temperature for " + mAndY[0] + "-" +mAndY[1] + "<br/>";
             }
         }
+        temperatureString = "<html><h2>The average temperatures per month for the past 20 years: </h2>" + temperatureString + "</html>";
+        gui.setAverageTemps20Years(temperatureString);
     }
 }
