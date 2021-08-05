@@ -11,6 +11,9 @@ public class Main
 {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException
     {
+        User user = new User("Henk", "Emmen,nl", true, "moi123");
+        LoginPage loginPage = new LoginPage();
+        /*
         GUI gui = new GUI();
 
         User user = new User("Henk", "Emmen,nl", true);
@@ -37,5 +40,7 @@ public class Main
         FrostAlarm frostAlarm = new FrostAlarm();
         frostAlarm.start(api, user, sound, gui);
         heatAlarm.start(api, user, sound, gui);
+
+         */
     }
 }
