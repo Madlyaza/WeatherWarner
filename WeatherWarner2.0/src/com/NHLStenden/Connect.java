@@ -18,7 +18,7 @@ public class Connect
     {
         try
         {
-            this.conn = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") + "\\SQLite\\WeatherWarner.db");
+            this.conn = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") + "\\src\\SQLite\\WeatherWarner.db");
             System.out.println("Connection established");
         } catch (SQLException ex)
         {
