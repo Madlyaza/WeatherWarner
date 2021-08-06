@@ -21,22 +21,21 @@ public class RegisterPage implements ActionListener
 
     public RegisterPage()
     {
-        userNameLabel.setBounds(50,100,75,25);
-        userNameField.setBounds(50,150,75,25);
-
         messageLabel.setBounds(125,250,350,35);
         messageLabel.setFont(new Font(null,Font.ITALIC,25));
 
-        userPasswordLabel.setBounds(125,100,250,25);
-        userPasswordField.setBounds(125,150,250,25);
+        userNameLabel.setBounds(50,100,125,25);
+        userPasswordLabel.setBounds(50,150,125,25);
+        userPasswordConfirmLabel.setBounds(50,200,125,25);
 
-        userPasswordConfirmLabel.setBounds(200,100,250,25);
-        userPasswordConfirmField.setBounds(200,150,250,25);
+        userNameField.setBounds(175,100,250,25);
+        userPasswordField.setBounds(175,150,250,25);
+        userPasswordConfirmField.setBounds(175,200,250,25);
 
-        registerButton.setBounds(125,200,100,25);
+        registerButton.setBounds(125,250,100,25);
         registerButton.addActionListener( this);
 
-        resetButton.setBounds(225,200,100,25);
+        resetButton.setBounds(225,250,100,25);
         resetButton.addActionListener( this);
 
         frame.add(userNameLabel);
@@ -61,6 +60,8 @@ public class RegisterPage implements ActionListener
         {
             userNameField.setText("");
             userPasswordField.setText("");
+            userPasswordConfirmField.setText("");
+            messageLabel.setText("");
         }
 
         if (e.getSource()== registerButton)
@@ -79,8 +80,9 @@ public class RegisterPage implements ActionListener
             {
                 if (userPassword.equals(userPasswordConfirm))
                 {
-                    if(connect.addUser(userName, userPassword))
+                    if(connect.userExists(userName))
                     {
+                        connect.addUser(userName, userPassword);
                         messageLabel.setForeground(Color.GREEN);
                         messageLabel.setText("Register successful");
                         GUI gui = new GUI();
@@ -90,6 +92,11 @@ public class RegisterPage implements ActionListener
                         messageLabel.setForeground(Color.RED);
                         messageLabel.setText("Username is already taken!");
                     }
+                }
+                else
+                {
+                    messageLabel.setForeground(Color.RED);
+                    messageLabel.setText("Passwords are not equal");
                 }
             }
         }
