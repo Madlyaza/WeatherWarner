@@ -7,7 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.sound.midi.SysexMessage;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,22 +14,20 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class XmlTemperatureHistory
 {
-    public void parseXML(GUI gui, int stationCode) throws ParserConfigurationException, IOException, SAXException
+    public void parseXML(GUI gui, String stationName) throws ParserConfigurationException, IOException, SAXException
     {
+        int stationCode = getStationCode(stationName);
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(System.getProperty("user.dir") + "\\src\\com\\NHLStenden\\Data\\History.xml"));
 
         NodeList nList = document.getElementsByTagName("observation");
-
-        ArrayList<String> observations = new ArrayList<>();
 
         ArrayList<NodeList> nodes = new ArrayList<>();
         for (int temp = 0; temp < nList.getLength(); temp++)
@@ -110,7 +107,34 @@ public class XmlTemperatureHistory
                 temperatureString = temperatureString + df.format(tempsAndDates.get(0)) + "\u00B0C was the average temperature for " + mAndY[0] + "-" +mAndY[1] + "<br/>";
             }
         }
-        temperatureString = "<html><h2>The average temperatures per month for the past 20 years: </h2>" + temperatureString + "</html>";
+        temperatureString = "<html><h2>The average temperatures per month for the past 20 years in " + stationName + " were: </h2>" + temperatureString + "</html>";
         gui.setAverageTemps20Years(temperatureString);
+    }
+
+    public int getStationCode(String stationName) throws ParserConfigurationException, IOException, SAXException
+    {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.parse(new File(System.getProperty("user.dir") + "\\src\\com\\NHLStenden\\Data\\WeatherStations.xml"));
+
+        NodeList nList = document.getElementsByTagName("stations");
+
+        for (int temp = 0; temp < nList.getLength(); temp++)
+        {
+            NodeList childNodes = nList.item(temp).getChildNodes();
+            for (int i = 0; i < childNodes.getLength(); i++)
+            {
+                Node node = childNodes.item(i);
+                if(node.getNodeType() == Node.ELEMENT_NODE)
+                {
+                    Element element = (Element) node;
+                    if(element.getAttribute("stationName").equals(stationName))
+                    {
+                        return Integer.parseInt(element.getAttribute("stationCode"));
+                    }
+                }
+            }
+        }
+        return -1;
     }
 }
