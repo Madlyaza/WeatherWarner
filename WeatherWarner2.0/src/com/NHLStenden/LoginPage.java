@@ -16,6 +16,7 @@ public class LoginPage implements ActionListener
     JLabel userNameLabel = new JLabel("Username:");
     JLabel userPasswordLabel = new JLabel("Password:");
     JLabel messageLabel = new JLabel("");
+    GUI gui;
 
     public LoginPage()
     {
@@ -75,7 +76,7 @@ public class LoginPage implements ActionListener
                 {
                     messageLabel.setForeground(Color.GREEN);
                     messageLabel.setText("Login successful");
-                    GUI gui = new GUI();
+                    this.gui = new GUI();
                 } else
                 {
                     messageLabel.setForeground(Color.RED);
@@ -83,5 +84,10 @@ public class LoginPage implements ActionListener
                 }
             }
         }
+    }
+
+    public GUI getGui()
+    {
+        return gui;
     }
 }
