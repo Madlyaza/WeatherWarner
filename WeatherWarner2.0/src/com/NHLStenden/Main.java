@@ -13,12 +13,12 @@ public class Main
     {
         GUI gui = new GUI();
 
-        User user = new User("Henk", "Emmen,nl", true);
+        User user = new User("Henk", "Hoogeveen,nl", true);
         Sound sound = new Sound();
         ApiCaller api = new ApiCaller();
 
         XmlTemperatureHistory xmlTemperatureHistory = new XmlTemperatureHistory();
-        xmlTemperatureHistory.parseXML(gui, "De Bilt");
+        xmlTemperatureHistory.parseXML(gui, "Hoogeveen");
 
         api.getNextTenDays(user.getLocation());
         XmlMinimumTemperatureTenDays xmlMinimumTemperatureTenDays = new XmlMinimumTemperatureTenDays();

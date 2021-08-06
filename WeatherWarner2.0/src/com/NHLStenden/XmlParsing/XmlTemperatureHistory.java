@@ -22,6 +22,11 @@ public class XmlTemperatureHistory
     public void parseXML(GUI gui, String stationName) throws ParserConfigurationException, IOException, SAXException
     {
         int stationCode = getStationCode(stationName);
+        if(stationCode == -1)
+        {
+            System.out.println("The station does not exist please choose one that exists.");
+            return;
+        }
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
