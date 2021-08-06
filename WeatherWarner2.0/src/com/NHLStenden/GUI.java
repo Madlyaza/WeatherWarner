@@ -9,6 +9,7 @@ public class GUI
     private final JPanel panelMinMaxTemp;
     private final JPanel panelWind;
     private final JPanel panelAverageTemperature;
+    private final JPanel panelAverageRain;
     private final JFrame frame;
     private final JTabbedPane tabbedPane;
     private final Dimension screensize;
@@ -21,6 +22,7 @@ public class GUI
     private final JLabel windDirection;
     private final JLabel windSpeed;
     private final JLabel averageTemps20Years;
+    private final JLabel averageRain20Years;
 
     public GUI()
     {
@@ -32,6 +34,7 @@ public class GUI
         windDirection = new JLabel("Direction");
         windSpeed = new JLabel("Speed");
         averageTemps20Years = new JLabel("Average temperatures for the last 20 years per month");
+        averageRain20Years = new JLabel("Average rain for the last 20 years per month");
 
         tabbedPane = new JTabbedPane();
         frame = new JFrame();
@@ -39,6 +42,7 @@ public class GUI
         panelMinMaxTemp = new JPanel();
         panelWind = new JPanel();
         panelAverageTemperature = new JPanel();
+        panelAverageRain = new JPanel();
         screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
         panelAlarms.add(heatWarning);
@@ -49,7 +53,6 @@ public class GUI
         JScrollPane scroller4 = new JScrollPane(panelAlarms);
         scroller4.getVerticalScrollBar().setUnitIncrement(16);
         tabbedPane.addTab("Alarms", scroller4);
-
 
         panelMinMaxTemp.add(minTemperature);
         panelMinMaxTemp.add(maxTemperature);
@@ -73,6 +76,13 @@ public class GUI
         JScrollPane scroller = new JScrollPane(panelAverageTemperature);
         scroller.getVerticalScrollBar().setUnitIncrement(16);
         tabbedPane.addTab("Average Temperature 20 Years", scroller);
+
+        panelAverageRain.add(averageRain20Years);
+
+        panelAverageRain.setLayout(new GridLayout(1, 0));
+        JScrollPane scroller5 = new JScrollPane(panelAverageRain);
+        scroller5.getVerticalScrollBar().setUnitIncrement(16);
+        tabbedPane.addTab("Average Precipitation 20 Years", scroller5);
 
         GroupLayout layout = new GroupLayout(frame.getContentPane());
         frame.getContentPane().setLayout(layout);
@@ -124,5 +134,10 @@ public class GUI
     public void setAverageTemps20Years(String text)
     {
         averageTemps20Years.setText(text);
+    }
+
+    public void setAverageRain20Years(String text)
+    {
+        averageRain20Years.setText(text);
     }
 }

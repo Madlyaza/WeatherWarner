@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
-public class XmlTemperatureHistory
+public class XmlPrecipitationHistory
 {
     public void parseXML(GUI gui, String stationName) throws ParserConfigurationException, IOException, SAXException
     {
@@ -58,16 +58,16 @@ public class XmlTemperatureHistory
 
         String holdingDate = "";
         String fullDate = "";
-        ArrayList<ArrayList> averageTempWithDate = new ArrayList<>();
+        ArrayList<ArrayList> averagePrecWithDate = new ArrayList<>();
         ArrayList<Double> tempList = new ArrayList<>();
         for (NodeList nodeList : nodes)
         {
             Node dateNode = nodeList.item(3);
-            Node tempNode = nodeList.item(5);
-            if (dateNode.getNodeType() == Node.ELEMENT_NODE && tempNode.getNodeType() == Node.ELEMENT_NODE)
+            Node rainNode = nodeList.item(7);
+            if (dateNode.getNodeType() == Node.ELEMENT_NODE && rainNode.getNodeType() == Node.ELEMENT_NODE)
             {
                 Element dateElement = (Element) dateNode;
-                Element tempElement = (Element) tempNode;
+                Element tempElement = (Element) rainNode;
                 if (dateElement.getNodeName().equals("date"))
                 {
                     String[] stringArray = dateElement.getTextContent().split("-");
@@ -80,11 +80,11 @@ public class XmlTemperatureHistory
                             {
                                 sum += i.doubleValue();
                             }
-                            Double average = (sum / tempList.size()) / 10; // Divide by 10 since the XML has it in 0.1 Celsius
+                            Double average = (sum / tempList.size()) / 10; // Divide by 10 since the XML has it in 0.1 mm
                             ArrayList<Object> avgList = new ArrayList<>();
                             avgList.add(average);
                             avgList.add(fullDate);
-                            averageTempWithDate.add(avgList);
+                            averagePrecWithDate.add(avgList);
                         }
 
                         tempList = new ArrayList<>();
@@ -101,20 +101,20 @@ public class XmlTemperatureHistory
         }
 
         LocalDate minus20 = LocalDate.now().minusYears(20);
-        String temperatureString = "";
+        String rainString = "";
         DecimalFormat df = new DecimalFormat("#.#");
-        for (ArrayList tempsAndDates : averageTempWithDate)
+        for (ArrayList rainAndDates : averagePrecWithDate)
         {
-            String[] tempDate = tempsAndDates.get(1).toString().split("T");
+            String[] tempDate = rainAndDates.get(1).toString().split("T");
             LocalDate currentDate = LocalDate.parse(tempDate[0]);
-            String[] mAndY = tempsAndDates.get(1).toString().split("-");
+            String[] mAndY = rainAndDates.get(1).toString().split("-");
             if (minus20.isBefore(currentDate))
             {
-                temperatureString = temperatureString + df.format(tempsAndDates.get(0)) + "\u00B0C was the average temperature for " + mAndY[0] + "-" + mAndY[1] + "<br/>";
+                rainString = rainString + df.format(rainAndDates.get(0)) + " mm was the average precipitation for " + mAndY[0] + "-" + mAndY[1] + "<br/>";
             }
         }
-        temperatureString = "<html><h2>The average temperatures per month for the past 20 years in " + stationName + " were: </h2>" + temperatureString + "</html>";
-        gui.setAverageTemps20Years(temperatureString);
+        rainString = "<html><h2>The average precipitation per month for the past 20 years in " + stationName + " were: </h2>" + rainString + "</html>";
+        gui.setAverageRain20Years(rainString);
     }
 
     public int getStationCode(String stationName) throws ParserConfigurationException, IOException, SAXException
