@@ -15,8 +15,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// Gets the wind direction for the next ten days
 public class XmlWindDirectionTenDays
 {
+    // Parses the XML so that it can be read out
+    // Does the string building needed to show the string on the GUI
     public void parseXML(GUI gui) throws ParserConfigurationException, IOException, SAXException
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

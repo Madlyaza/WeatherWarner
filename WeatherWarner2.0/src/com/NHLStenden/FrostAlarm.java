@@ -3,12 +3,13 @@ package com.NHLStenden;
 import com.NHLStenden.Data.User;
 import com.NHLStenden.XmlParsing.XmlFrostAlarm;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
+// The class that checks the coming day for any frost damage to the plants and gives an alarm accordingly
 public class FrostAlarm
 {
+    // Starts the Thread that runs every 24 hours to check for frost damage
     public void start(ApiCaller api, User user, Sound sound, GUI gui)
     {
         Thread frostAlarm = new Thread(() ->
