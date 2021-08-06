@@ -6,47 +6,48 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class LoginPage implements ActionListener
+public class RegisterPage implements ActionListener
 {
     JFrame frame = new JFrame();
-    JButton loginButton = new JButton("Login");
-    JButton resetButton = new JButton("Reset");
     JButton registerButton = new JButton("Register");
+    JButton resetButton = new JButton("Reset");
     JTextField userNameField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
+    JPasswordField userPasswordConfirmField = new JPasswordField();
     JLabel userNameLabel = new JLabel("Username:");
     JLabel userPasswordLabel = new JLabel("Password:");
+    JLabel userPasswordConfirmLabel = new JLabel("Confirm password:");
     JLabel messageLabel = new JLabel("");
 
-    public LoginPage()
+    public RegisterPage()
     {
         userNameLabel.setBounds(50,100,75,25);
-        userPasswordLabel.setBounds(50,150,75,25);
+        userNameField.setBounds(50,150,75,25);
 
         messageLabel.setBounds(125,250,350,35);
         messageLabel.setFont(new Font(null,Font.ITALIC,25));
 
-        userNameField.setBounds(125,100,250,25);
+        userPasswordLabel.setBounds(125,100,250,25);
         userPasswordField.setBounds(125,150,250,25);
 
-        loginButton.setBounds(125,200,100,25);
-        loginButton.addActionListener(this);
+        userPasswordConfirmLabel.setBounds(200,100,250,25);
+        userPasswordConfirmField.setBounds(200,150,250,25);
+
+        registerButton.setBounds(125,200,100,25);
+        registerButton.addActionListener( this);
 
         resetButton.setBounds(225,200,100,25);
-        resetButton.addActionListener(this);
-
-        registerButton.setBounds(325,200,100,25);
-        registerButton.addActionListener(this);
-
+        resetButton.addActionListener( this);
 
         frame.add(userNameLabel);
-        frame.add(userPasswordLabel);
-        frame.add(messageLabel);
         frame.add(userNameField);
+        frame.add(messageLabel);
+        frame.add(userPasswordLabel);
         frame.add(userPasswordField);
-        frame.add(loginButton);
-        frame.add(resetButton);
+        frame.add(userPasswordConfirmLabel);
+        frame.add(userPasswordConfirmField);
         frame.add(registerButton);
+        frame.add(resetButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(520,420);
         frame.setLayout(null);
@@ -62,18 +63,12 @@ public class LoginPage implements ActionListener
             userPasswordField.setText("");
         }
 
-        if (e.getSource()==registerButton)
-        {
-            RegisterPage registerPage = new RegisterPage();
-        }
-
-        if (e.getSource()==loginButton)
+        if (e.getSource()== registerButton)
         {
             String userName = userNameField.getText();
             String userPassword = String.valueOf(userPasswordField.getPassword());
-            String userPasswordDB = "";
+            String userPasswordConfirm = String.valueOf(userPasswordConfirmField.getPassword());
             Connect connect = new Connect();
-            userPasswordDB = connect.getPassword(userName);
 
             if (Objects.equals(userName, "") || userPassword.equals(""))
             {
@@ -82,17 +77,22 @@ public class LoginPage implements ActionListener
             }
             else
             {
-                if (userPassword.equals(userPasswordDB))
+                if (userPassword.equals(userPasswordConfirm))
                 {
-                    messageLabel.setForeground(Color.GREEN);
-                    messageLabel.setText("Login successful");
-                    GUI gui = new GUI();
-                } else
-                {
-                    messageLabel.setForeground(Color.RED);
-                    messageLabel.setText("Invalid Username or Password!");
+                    if(connect.addUser(userName, userPassword))
+                    {
+                        messageLabel.setForeground(Color.GREEN);
+                        messageLabel.setText("Register successful");
+                        GUI gui = new GUI();
+                    }
+                    else
+                    {
+                        messageLabel.setForeground(Color.RED);
+                        messageLabel.setText("Username is already taken!");
+                    }
                 }
             }
         }
     }
 }
+
