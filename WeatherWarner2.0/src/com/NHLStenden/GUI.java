@@ -140,4 +140,49 @@ public class GUI
     {
         averageRain20Years.setText(text);
     }
+
+    public JLabel getHeatWarning()
+    {
+        return heatWarning;
+    }
+
+    public JLabel getFrostWarning()
+    {
+        return frostWarning;
+    }
+
+    public JLabel getPrecipitationWarning()
+    {
+        return precipitationWarning;
+    }
+
+    public JLabel getMaxTemperature()
+    {
+        return maxTemperature;
+    }
+
+    public JLabel getMinTemperature()
+    {
+        return minTemperature;
+    }
+
+    public JLabel getWindDirection()
+    {
+        return windDirection;
+    }
+
+    public JLabel getWindSpeed()
+    {
+        return windSpeed;
+    }
+
+    public JLabel getAverageTemps20Years()
+    {
+        return averageTemps20Years;
+    }
+
+    public JLabel getAverageRain20Years()
+    {
+        return averageRain20Years;
+    }
 }

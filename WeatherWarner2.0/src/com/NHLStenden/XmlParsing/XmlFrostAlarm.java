@@ -5,15 +5,17 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
+
+// Checks for frost damage tomorrow
 public class XmlFrostAlarm
 {
+    // Parses the XML so that it can be read out
     public String parseXML() throws ParserConfigurationException, IOException, SAXException
     {
         String minTemperature = "";
@@ -35,6 +37,7 @@ public class XmlFrostAlarm
         return minTemperature;
     }
 
+    // Checks the temperature to see if frost damage will happen
     public boolean checkTemperature(String minTemperature)
     {
         double temperature = 0.0;

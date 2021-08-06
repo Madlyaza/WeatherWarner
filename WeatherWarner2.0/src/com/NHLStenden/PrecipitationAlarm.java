@@ -6,8 +6,10 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
+// The class that checks the coming three hours for any precipitation damage to the plants and gives an alarm accordingly
 public class PrecipitationAlarm
 {
+    // Starts the Thread that runs every 24 hours to check for precipitation damage
     public void start(ApiCaller api, User user, Sound sound, GUI gui)
     {
         Thread precipitationAlarm = new Thread(() ->
@@ -22,7 +24,7 @@ public class PrecipitationAlarm
                     if (xmlPrecipitationAlarm.parseXML())
                     {
                         sound.playSound();
-                        gui.setFrostWarningText("Rain damage is expected in three hours!");
+                        gui.setPrecipitationWarningText("Rain damage is expected in three hours!");
                     }
                     else
                     {

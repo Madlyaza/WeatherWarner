@@ -5,9 +5,10 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
-
+// The class that handles the playing of alarm sound
 public class Sound
 {
+    // Plays the weather alarm
     public void playSound()
     {
         try
@@ -16,10 +17,9 @@ public class Sound
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            System.out.println("BZZZZ");
         } catch (Exception ex)
         {
-            System.out.println("Error with playing sound.");
+            System.out.println("Error with playing sound. But crop damage is still incoming!");
             ex.printStackTrace();
         }
     }

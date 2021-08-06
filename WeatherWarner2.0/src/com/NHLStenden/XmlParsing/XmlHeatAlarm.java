@@ -15,8 +15,10 @@ import java.io.IOException;
 import static java.lang.Integer.max;
 import static java.lang.Integer.parseInt;
 
+// Checks for heat damage tomorrow
 public class XmlHeatAlarm
 {
+    // Parses the XML so that it can be read out
     public String parseXML() throws ParserConfigurationException, IOException, SAXException
     {
         String maxTemperature = "";
@@ -38,6 +40,7 @@ public class XmlHeatAlarm
         return maxTemperature;
     }
 
+    // Checks the temperature to see if heat damage will happen
     public boolean checkTemperature(String maxTemperature)
     {
         double temperature = 0.0;

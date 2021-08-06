@@ -18,8 +18,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
+// Shows the average temperature for the last 20 years filtered on location
 public class XmlTemperatureHistory
 {
+    // Parses the XML so that it can be read out
+    // Does calculations to calculate the Average temperature per month
     public void parseXML(GUI gui, String stationName) throws ParserConfigurationException, IOException, SAXException
     {
         int stationCode = getStationCode(stationName.toLowerCase(Locale.ROOT));
@@ -117,6 +120,7 @@ public class XmlTemperatureHistory
         gui.setAverageTemps20Years(temperatureString);
     }
 
+    // Gets the stationCode filtered on stationName
     public int getStationCode(String stationName) throws ParserConfigurationException, IOException, SAXException
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
