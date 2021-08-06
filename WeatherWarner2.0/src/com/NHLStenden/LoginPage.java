@@ -11,6 +11,7 @@ public class LoginPage implements ActionListener
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("Login");
     JButton resetButton = new JButton("Reset");
+    JButton registerButton = new JButton("Register");
     JTextField userNameField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
     JLabel userNameLabel = new JLabel("Username:");
@@ -35,6 +36,10 @@ public class LoginPage implements ActionListener
         resetButton.setBounds(225,200,100,25);
         resetButton.addActionListener(this);
 
+        registerButton.setBounds(325,200,100,25);
+        registerButton.addActionListener(this);
+
+
         frame.add(userNameLabel);
         frame.add(userPasswordLabel);
         frame.add(messageLabel);
@@ -42,6 +47,7 @@ public class LoginPage implements ActionListener
         frame.add(userPasswordField);
         frame.add(loginButton);
         frame.add(resetButton);
+        frame.add(registerButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(520,420);
         frame.setLayout(null);
@@ -55,6 +61,11 @@ public class LoginPage implements ActionListener
         {
             userNameField.setText("");
             userPasswordField.setText("");
+        }
+
+        if (e.getSource()==registerButton)
+        {
+            RegisterPage registerPage = new RegisterPage();
         }
 
         if (e.getSource()==loginButton)
