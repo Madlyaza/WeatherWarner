@@ -40,7 +40,7 @@ public class XmlWindDirectionTenDays
         int count = 1;
         for (String direction : windDirections)
         {
-            tempString = tempString + direction + " on " + LocalDate.now().plusDays(count) +"<br/>";
+            tempString = tempString + direction + " on " + LocalDate.now().plusDays(count) + "<br/>";
             count++;
         }
         tempString = "<html><h2>Wind Directions for the next 10 days: </h2>" + tempString + "</html>";

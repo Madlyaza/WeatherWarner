@@ -40,13 +40,12 @@ public class XmlMaximumTemperatureTenDays
             int count = 1;
             for (String min : maximumTemperatures)
             {
-                tempString = tempString + min + " \u00B0C on " + LocalDate.now().plusDays(count) +"<br/>";
+                tempString = tempString + min + " \u00B0C on " + LocalDate.now().plusDays(count) + "<br/>";
                 count++;
             }
             tempString = "<html><h2>The Maximum Temperature per date:</h2>" + tempString + "</html>";
             gui.setMaxTemperature(tempString);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             System.out.println("Check XML file for more information");
             ex.printStackTrace();
