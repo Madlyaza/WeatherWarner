@@ -23,7 +23,7 @@ public class PrecipitationAlarm
                     if (xmlPrecipitationAlarm.parseXML())
                     {
                         sound.playSound();
-                        gui.setFrostWarningText("Rain damage is expected in three hours!");
+                        gui.setPrecipitationWarningText("Rain damage is expected in three hours!");
                     }
                     else
                     {
