@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class LoginPage implements ActionListener
 {
@@ -59,27 +60,27 @@ public class LoginPage implements ActionListener
         {
             String userName = userNameField.getText();
             String userPassword = String.valueOf(userPasswordField.getPassword());
+            String userPasswordDB = "";
+            Connect connect = new Connect();
+            userPasswordDB = connect.getPassword(userName);
 
-            if (userName.equals("admin") && userPassword.equals("moin"))
-            {
-                messageLabel.setForeground(Color.GREEN);
-                messageLabel.setText("Login successful");
-                GUI gui = new GUI();
-            }
-            else if (userName.equals("admin"))
+            if (Objects.equals(userName, "") || userPassword.equals(""))
             {
                 messageLabel.setForeground(Color.RED);
-                messageLabel.setText("Wrong password");
-            }
-            else if (userPassword.equals("moin"))
-            {
-                messageLabel.setForeground(Color.RED);
-                messageLabel.setText("Username not found");
+                messageLabel.setText("Empty fields detected!");
             }
             else
             {
-                messageLabel.setForeground(Color.RED);
-                messageLabel.setText("Invalid Username & Password!");
+                if (userPassword.equals(userPasswordDB))
+                {
+                    messageLabel.setForeground(Color.GREEN);
+                    messageLabel.setText("Login successful");
+                    GUI gui = new GUI();
+                } else
+                {
+                    messageLabel.setForeground(Color.RED);
+                    messageLabel.setText("Invalid Username or Password!");
+                }
             }
         }
     }
