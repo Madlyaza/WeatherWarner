@@ -1,6 +1,5 @@
 package com.NHLStenden;
 
-import com.NHLStenden.Data.User;
 import com.NHLStenden.XmlParsing.XmlPrecipitationAlarm;
 import org.xml.sax.SAXException;
 

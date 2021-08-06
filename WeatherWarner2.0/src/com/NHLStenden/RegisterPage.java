@@ -21,6 +21,9 @@ public class RegisterPage implements ActionListener
 
     public RegisterPage()
     {
+        /**
+         * Constructor for the register page, contains username field, password field, password confirm field, reset button and a register button.
+         */
         messageLabel.setBounds(125,250,350,35);
         messageLabel.setFont(new Font(null,Font.ITALIC,25));
 
@@ -53,6 +56,10 @@ public class RegisterPage implements ActionListener
         frame.setVisible(true);
     }
 
+    /**
+     *
+     * @param e when a button is pressed, take the correct actions for the button.
+     */
     @Override
     public void actionPerformed(ActionEvent e)
     {
@@ -85,7 +92,7 @@ public class RegisterPage implements ActionListener
                         connect.addUser(userName, userPassword);
                         messageLabel.setForeground(Color.GREEN);
                         messageLabel.setText("Register successful");
-                        GUI gui = new GUI();
+                        LoginPage loginPage = new LoginPage(); // When registered successfully redirect to the login page
                     }
                     else
                     {

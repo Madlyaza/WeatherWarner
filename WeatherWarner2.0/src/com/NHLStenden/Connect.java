@@ -1,7 +1,5 @@
 package com.NHLStenden;
 
-import com.NHLStenden.Data.User;
-
 import java.sql.*;
 
 public class Connect
@@ -34,14 +32,7 @@ public class Connect
             PreparedStatement getUser = conn.prepareStatement(SELECT_USER_QUERY);
             getUser.setString(1, Name);
             ResultSet results = getUser.executeQuery();
-            if (!results.next())
-            {
-                user = true;
-            }
-            else
-            {
-                user = false;
-            }
+            user = !results.next();
             getUser.close();
         }
         catch (SQLException ex)
