@@ -18,8 +18,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
+// Shows the average precipitation for the last 20 years filtered on location
 public class XmlPrecipitationHistory
 {
+    // Parses the XML so that it can be read out
+    // Does calculations to calculate the Average precipitation per month
     public void parseXML(GUI gui, String stationName) throws ParserConfigurationException, IOException, SAXException
     {
         int stationCode = getStationCode(stationName.toLowerCase(Locale.ROOT));
@@ -117,6 +120,7 @@ public class XmlPrecipitationHistory
         gui.setAverageRain20Years(rainString);
     }
 
+    // Gets the stationCode filtered on stationName
     public int getStationCode(String stationName) throws ParserConfigurationException, IOException, SAXException
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

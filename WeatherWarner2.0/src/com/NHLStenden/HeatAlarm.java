@@ -1,15 +1,16 @@
 package com.NHLStenden;
 
 import com.NHLStenden.Data.User;
-import com.NHLStenden.XmlParsing.XmlFrostAlarm;
 import com.NHLStenden.XmlParsing.XmlHeatAlarm;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
+// The class that checks the coming day for any heat damage to the plants and gives an alarm accordingly
 public class HeatAlarm
 {
+    // Starts the Thread that runs every 24 hours to check for heat damage
     public void start(ApiCaller api, User user, Sound sound, GUI gui)
     {
         Thread heatAlarm = new Thread(() ->
