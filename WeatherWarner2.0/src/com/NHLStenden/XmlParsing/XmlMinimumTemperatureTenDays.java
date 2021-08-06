@@ -41,7 +41,7 @@ public class XmlMinimumTemperatureTenDays
             int count = 1;
             for (String min : minimumTemperatures)
             {
-                tempString = tempString + min + " \u00B0C on " + LocalDate.now().plusDays(count) +"<br/>";
+                tempString = tempString + min + " \u00B0C on " + LocalDate.now().plusDays(count) + "<br/>";
                 count++;
             }
             tempString = "<html><h2>The Minimum Temperature per date:</h2>" + tempString + "</html>";
