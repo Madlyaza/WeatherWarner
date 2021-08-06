@@ -6,6 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,7 +22,7 @@ public class XmlTemperatureHistory
     public void parseXML(GUI gui, String stationName) throws ParserConfigurationException, IOException, SAXException
     {
         int stationCode = getStationCode(stationName);
-        if(stationCode == -1)
+        if (stationCode == -1)
         {
             System.out.println("The station does not exist please choose one that exists.");
             return;
@@ -37,15 +38,15 @@ public class XmlTemperatureHistory
         for (int temp = 0; temp < nList.getLength(); temp++)
         {
             NodeList childNodes = nList.item(temp).getChildNodes();
-            for(int i = 0; i < childNodes.getLength(); i++)
+            for (int i = 0; i < childNodes.getLength(); i++)
             {
                 Node node = childNodes.item(i);
-                if(node.getNodeType() == Node.ELEMENT_NODE)
+                if (node.getNodeType() == Node.ELEMENT_NODE)
                 {
                     Element element = (Element) node;
                     if (element.getNodeName().equals("station-code"))
                     {
-                        if(Integer.parseInt(element.getTextContent()) == stationCode)
+                        if (Integer.parseInt(element.getTextContent()) == stationCode)
                         {
                             nodes.add(childNodes);
                         }
@@ -74,7 +75,7 @@ public class XmlTemperatureHistory
                         double sum = 0.0;
                         if (!tempList.isEmpty())
                         {
-                            for(Number i : tempList)
+                            for (Number i : tempList)
                             {
                                 sum += i.doubleValue();
                             }
@@ -90,7 +91,7 @@ public class XmlTemperatureHistory
                         fullDate = dateElement.getTextContent();
 
                     }
-                    if(!Objects.equals(tempElement.getTextContent(), ""))
+                    if (!Objects.equals(tempElement.getTextContent(), ""))
                     {
                         tempList.add(Double.parseDouble(tempElement.getTextContent()));
                     }
@@ -98,17 +99,17 @@ public class XmlTemperatureHistory
             }
         }
 
-        LocalDate minus20 =  LocalDate.now().minusYears(20);
+        LocalDate minus20 = LocalDate.now().minusYears(20);
         String temperatureString = "";
         DecimalFormat df = new DecimalFormat("#.#");
-        for(ArrayList tempsAndDates : averageTempWithDate)
+        for (ArrayList tempsAndDates : averageTempWithDate)
         {
             String[] tempDate = tempsAndDates.get(1).toString().split("T");
             LocalDate currentDate = LocalDate.parse(tempDate[0]);
-            String [] mAndY = tempsAndDates.get(1).toString().split("-");
+            String[] mAndY = tempsAndDates.get(1).toString().split("-");
             if (minus20.isBefore(currentDate))
             {
-                temperatureString = temperatureString + df.format(tempsAndDates.get(0)) + "\u00B0C was the average temperature for " + mAndY[0] + "-" +mAndY[1] + "<br/>";
+                temperatureString = temperatureString + df.format(tempsAndDates.get(0)) + "\u00B0C was the average temperature for " + mAndY[0] + "-" + mAndY[1] + "<br/>";
             }
         }
         temperatureString = "<html><h2>The average temperatures per month for the past 20 years in " + stationName + " were: </h2>" + temperatureString + "</html>";
@@ -129,10 +130,10 @@ public class XmlTemperatureHistory
             for (int i = 0; i < childNodes.getLength(); i++)
             {
                 Node node = childNodes.item(i);
-                if(node.getNodeType() == Node.ELEMENT_NODE)
+                if (node.getNodeType() == Node.ELEMENT_NODE)
                 {
                     Element element = (Element) node;
-                    if(element.getAttribute("stationName").equals(stationName))
+                    if (element.getAttribute("stationName").equals(stationName))
                     {
                         return Integer.parseInt(element.getAttribute("stationCode"));
                     }
