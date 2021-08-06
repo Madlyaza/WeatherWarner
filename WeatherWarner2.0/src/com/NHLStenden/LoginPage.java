@@ -21,6 +21,9 @@ public class LoginPage implements ActionListener
 
     public LoginPage()
     {
+        /**
+         * Constructor for the login page, contains username field, password field, login button, reset button and a register button.
+         */
         userNameLabel.setBounds(50,100,75,25);
         userPasswordLabel.setBounds(50,150,75,25);
 
@@ -54,6 +57,10 @@ public class LoginPage implements ActionListener
         frame.setVisible(true);
     }
 
+    /**
+     *
+     * @param e when a button is pressed, take the correct actions for the button.
+     */
     @Override
     public void actionPerformed(ActionEvent e)
     {

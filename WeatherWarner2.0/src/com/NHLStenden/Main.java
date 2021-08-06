@@ -1,12 +1,10 @@
 package com.NHLStenden;
 
-import com.NHLStenden.Data.User;
 import com.NHLStenden.XmlParsing.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class Main
 {
