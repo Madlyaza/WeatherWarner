@@ -69,7 +69,7 @@ public class GUI
 
         panelAverageTemperature.add(averageTemps20Years);
 
-        panelAverageTemperature.setLayout(new GridLayout(1,0));
+        panelAverageTemperature.setLayout(new GridLayout(1, 0));
         JScrollPane scroller = new JScrollPane(panelAverageTemperature);
         scroller.getVerticalScrollBar().setUnitIncrement(16);
         tabbedPane.addTab("Average Temperature 20 Years", scroller);

@@ -40,7 +40,7 @@ public class XmlWindspeedTenDays
         int count = 1;
         for (String windSpeed : windspeeds)
         {
-            tempString = tempString + windSpeed + " m/s on " + LocalDate.now().plusDays(count) +"<br/>";
+            tempString = tempString + windSpeed + " m/s on " + LocalDate.now().plusDays(count) + "<br/>";
             count++;
         }
         tempString = "<html><h2>Wind Speed for the next 10 days: </h2>" + tempString + "</html>";
