@@ -1,6 +1,7 @@
 package com.NHLStenden;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class GUI
@@ -39,10 +40,15 @@ public class GUI
         tabbedPane = new JTabbedPane();
         frame = new JFrame();
         panelAlarms = new JPanel();
+        panelAlarms.setBorder(new EmptyBorder(10,25,10,10));
         panelMinMaxTemp = new JPanel();
+        panelMinMaxTemp.setBorder(new EmptyBorder(10,25,10,10));
         panelWind = new JPanel();
+        panelWind.setBorder(new EmptyBorder(10,25,10,10));
         panelAverageTemperature = new JPanel();
+        panelAverageTemperature.setBorder(new EmptyBorder(10,25,10,10));
         panelAverageRain = new JPanel();
+        panelAverageRain.setBorder(new EmptyBorder(10,25,10,10));
         screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
         panelAlarms.add(heatWarning);
