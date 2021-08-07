@@ -18,6 +18,7 @@ public class LoginPage implements ActionListener
     JLabel userPasswordLabel = new JLabel("Password:");
     JLabel messageLabel = new JLabel("");
     GUI gui;
+    User user;
 
     public LoginPage()
     {
@@ -58,8 +59,8 @@ public class LoginPage implements ActionListener
     }
 
     /**
-     *
-     * @param e when a button is pressed, take the correct actions for the button.
+     * when a button is pressed, take the correct actions for the button.
+     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e)
@@ -94,6 +95,7 @@ public class LoginPage implements ActionListener
                 {
                     messageLabel.setForeground(Color.GREEN);
                     messageLabel.setText("Login successful");
+                    createUser(userName, userPassword, connect);
                     this.gui = new GUI();
                 } else
                 {
@@ -107,5 +109,18 @@ public class LoginPage implements ActionListener
     public GUI getGui()
     {
         return gui;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public User createUser(String userName, String userPassword, Connect connect)
+    {
+        String location = connect.getLocation();
+        int admin = connect.getAdmin(userName);
+        user = new User(userName, userPassword, admin, location);
+        return user;
     }
 }

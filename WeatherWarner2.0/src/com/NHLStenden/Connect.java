@@ -8,16 +8,29 @@ public class Connect
     public static final String TABLE_USER = "User";
     public static final String COLUMN_PASSWORD = "Password";
     public static final String COLUMN_NAME = "Name";
+    public static final String COLUMN_ADMIN = "Admin";
     public static final String SELECT_PASSWORD_QUERY = "SELECT " + COLUMN_PASSWORD + " FROM " + TABLE_USER + " WHERE " + COLUMN_NAME + " =?";
     public static final String SELECT_USER_QUERY = "SELECT " + COLUMN_NAME + " FROM " + TABLE_USER + " WHERE " + COLUMN_NAME + " =?";
+    public static final String SELECT_ADMIN_QUERY = "SELECT " + COLUMN_ADMIN + " FROM " + TABLE_USER + " WHERE " + COLUMN_NAME + " =?";
     public static final String INSERT_USER_QUERY = "INSERT INTO User (Name, Password, Admin) VALUES (?,?,?)";
+    public static final String SELECT_LOCATION_QUERY = "SELECT Location FROM Current_Location";
 
     public Connect()
     {
         try
         {
-            this.conn = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") + "\\src\\SQLite\\WeatherWarner.db");
-            System.out.println("Connection established");
+            this.conn = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") + "\\SQLite\\WeatherWarner.db");
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    public void start()
+    {
+        try
+        {
+            this.conn = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") + "\\SQLite\\WeatherWarner.db");
         } catch (SQLException ex)
         {
             ex.printStackTrace();
@@ -55,8 +68,6 @@ public class Connect
             addUser.setInt(3,0);
             addUser.executeUpdate();
             addUser.close();
-            conn.close();
-            System.out.println("conn closed");
 
         }
         catch (SQLException e)
@@ -78,13 +89,52 @@ public class Connect
                     password = results.getString("Password");
                 }
                 getPassword.close();
-                conn.close();
-            System.out.println("Connection closed");
         }
         catch (SQLException ex)
         {
             ex.printStackTrace();
         }
         return password;
+    }
+
+    public String getLocation()
+    {
+        String location = "";
+        try
+        {
+            PreparedStatement getLocation = conn.prepareStatement(SELECT_LOCATION_QUERY);
+            ResultSet results = getLocation.executeQuery();
+                while (results.next())
+                {
+                    location = results.getString("Location");
+                }
+                getLocation.close();
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return location;
+    }
+
+    public int getAdmin(String Name)
+    {
+        int admin = 0;
+        try
+        {
+            PreparedStatement getAdmin = conn.prepareStatement(SELECT_ADMIN_QUERY);
+            getAdmin.setString(1, Name);
+            ResultSet results = getAdmin.executeQuery();
+                while (results.next())
+                {
+                    admin = results.getInt("Admin");
+                }
+            getAdmin.close();
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return admin;
     }
 }

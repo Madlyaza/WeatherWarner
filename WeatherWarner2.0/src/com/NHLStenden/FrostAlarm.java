@@ -9,7 +9,7 @@ import java.io.IOException;
 public class FrostAlarm
 {
     // Starts the Thread that runs every 24 hours to check for frost damage
-    public void start(ApiCaller api, User user, Sound sound, GUI gui)
+    public FrostAlarm(ApiCaller api, User user, Sound sound, GUI gui)
     {
         Thread frostAlarm = new Thread(() ->
         {
