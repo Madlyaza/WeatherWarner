@@ -96,7 +96,6 @@ public class LoginPage implements ActionListener
                     messageLabel.setForeground(Color.GREEN);
                     messageLabel.setText("Login successful");
                     createUser(userName, userPassword, connect);
-                    this.gui = new GUI();
                 } else
                 {
                     messageLabel.setForeground(Color.RED);

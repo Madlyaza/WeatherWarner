@@ -125,7 +125,7 @@ public class XmlTemperatureHistory
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new File(System.getProperty("user.dir") + "\\com\\NHLStenden\\Data\\WeatherStations.xml"));
+        Document document = builder.parse(new File(System.getProperty("user.dir") + "\\src\\com\\NHLStenden\\Data\\WeatherStations.xml"));
 
         NodeList nList = document.getElementsByTagName("stations");
 
