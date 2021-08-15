@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <stations>
+        <station stationName="Ijmond" stationCode="209"/>
+        <station stationName="Valkenburg Zh" stationCode="210"/>
+        <station stationName="Voorschoten" stationCode="215"/>
+        <station stationName="Ijmuiden" stationCode="225"/>
+        <station stationName="De Kooy" stationCode="235"/>
+        <station stationName="Schiphol" stationCode="240"/>
+        <station stationName="Vlieland" stationCode="242"/>
+        <station stationName="Wijdenes" stationCode="248"/>
+        <station stationName="Berkhout" stationCode="249"/>
+        <station stationName="Hoorn Terschelling" stationCode="251"/>
+        <station stationName="Wijk aan Zee" stationCode="257"/>
+        <station stationName="Houtribdijk" stationCode="258"/>
+        <station stationName="De Bilt" stationCode="260"/>
+        <station stationName="Soesterberg" stationCode="265"/>
+        <station stationName="Stavoren" stationCode="267"/>
+        <station stationName="Lelystad" stationCode="269"/>
+        <station stationName="Leeuwarden" stationCode="270"/>
+        <station stationName="Marknesse" stationCode="273"/>
+        <station stationName="Deelen" stationCode="275"/>
+        <station stationName="Lauwersoog" stationCode="277"/>
+        <station stationName="Heino" stationCode="278"/>
+        <station stationName="Hoogeveen" stationCode="279"/>
+        <station stationName="Eelde" stationCode="280"/>
+        <station stationName="Hupsel" stationCode="283"/>
+        <station stationName="Huibertgat" stationCode="285"/>
+        <station stationName="Nieuw Beerta" stationCode="286"/>
+        <station stationName="Twenthe" stationCode="290"/>
+        <station stationName="Cadzand" stationCode="308"/>
+        <station stationName="Vlissingen" stationCode="310"/>
+        <station stationName="Hoofdplaat" stationCode="311"/>
+        <station stationName="Oosterschelde" stationCode="312"/>
+        <station stationName="Vlakte van De Raan" stationCode="313"/>
+        <station stationName="Hansweert" stationCode="315"/>
+        <station stationName="Schaar" stationCode="316"/>
+        <station stationName="Westdorpe" stationCode="319"/>
+        <station stationName="Wilhelminadorp" stationCode="323"/>
+        <station stationName="Stavenisse" stationCode="324"/>
+        <station stationName="Hoek van Holland" stationCode="330"/>
+        <station stationName="Tholen" stationCode="331"/>
+        <station stationName="Woensdrecht" stationCode="340"/>
+        <station stationName="Rotterdam Geulhaven" stationCode="343"/>
+        <station stationName="Rotterdam" stationCode="344"/>
+        <station stationName="Cabauw Mast" stationCode="348"/>
+        <station stationName="Gilze-Rijen" stationCode="350"/>
+        <station stationName="Herwijnen" stationCode="356"/>
+        <station stationName="Eindhoven" stationCode="370"/>
+        <station stationName="Volkel" stationCode="375"/>
+        <station stationName="Ell" stationCode="377"/>
+        <station stationName="Maastricht" stationCode="380"/>
+        <station stationName="Arcen" stationCode="391"/>
+    </stations>
+</root>

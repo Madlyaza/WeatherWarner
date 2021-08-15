@@ -137,4 +137,16 @@ public class Connect
         }
         return admin;
     }
+
+    public void closeConnection(Connection connect)
+    {
+        try
+        {
+            connect.close();
+        } catch (SQLException e)
+        {
+            System.out.println("Unable to close database connection!");
+            e.printStackTrace();
+        }
+    }
 }
